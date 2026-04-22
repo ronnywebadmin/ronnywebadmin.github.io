@@ -1,0 +1,412 @@
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "EB Garamond", serif;
+}
+
+body {
+    color: #3a2a1f;
+}
+
+
+/* =========================
+   PAGE BACKGROUNDS
+========================= */
+.home {
+    background: url("images/hero-bg.png") center top no-repeat;
+    background-size: cover;
+}
+
+.media-page {
+    background: url("images/media-bg.png") center 150% no-repeat;
+    background-size: cover;
+}
+
+.books-page {
+    background: url("images/hero-bg2.jpg") center top no-repeat;
+    background-size: cover;
+}
+
+.contact-page {
+    background: url("images/modal-bg.jpg") center 20% no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   HEADER / NAVBAR
+========================= */
+header {
+    padding-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* unified navbar */
+.navbar,
+.top-nav nav {
+    background: #8b2c2c;
+    text-align: center;
+    padding: 12px 0;
+}
+
+.navbar a,
+.top-nav a {
+    color: #f2d7b5;
+    margin: 0 12px;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================
+   HERO (HOME ONLY)
+========================= */
+.home .hero {
+    text-align: center;
+    padding-top: 200px;
+    margin-bottom: 500px;
+}
+
+.home .hero-content {
+    max-width: 500px;
+    margin-left: 45%;
+}
+
+.hero h1 {
+    font-size: 45px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+.hero p {
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+
+/* =========================
+   SECTION GENERIC
+========================= */
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+
+/* =========================
+   TITLES WITH LINES
+========================= */
+h2 {
+    font-size: 30px;
+    letter-spacing: 2px;
+    margin: 40px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2::before,
+h2::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #5c3a26;
+    margin: 0 15px;
+}
+
+
+/* =========================
+   TEXT BLOCK
+========================= */
+.text-container {
+    max-width: 600px;
+    margin: auto;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   BOOKS GRID
+========================= */
+.book-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.book-card {
+    display: flex;
+    gap: 15px;
+    border: 1px solid #5a3d2b;
+    padding: 15px;
+}
+
+.book-card img {
+    width: 100px;
+}
+
+
+/* =========================
+   MEDIA PAGE
+========================= */
+.media-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.media-content h1 {
+    font-size: 26px;
+    margin: 20px 0 5px;
+    font-weight: normal;
+}
+
+.author,
+.verses {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.description {
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.lyrics {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.lyrics h3 {
+    margin-top: 20px;
+    font-weight: normal;
+}
+
+.lyrics p {
+    margin: 3px 0;
+}
+
+.ending {
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   CONTACT PAGE
+========================= */
+.contact-section {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-top: 200px;
+    padding-bottom: 100px;
+    text-align: center;
+}
+
+.contact-info {
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+/* FORM */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 280px;
+    padding: 8px;
+    border: 1px solid #5a3d2b;
+    background: rgba(255,255,255,0.85);
+}
+
+.contact-form .btn {
+    margin-top: 10px;
+}
+
+.verse-body {
+    margin: 20px 0;
+}
+
+.verse-body p {
+    margin: 4px 0;
+}
+
+.verse-body p:nth-child(2n) {
+    margin-bottom: 12px;
+}
+
+
+/* =========================
+   VERSE BUTTONS
+========================= */
+.verse-buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* =========================
+   INLINE VERSE DISPLAY
+========================= */
+.modal {
+    display: none;
+    width: 100%;
+    margin-top: -260px;
+}
+
+.modal-content {
+    background: url("images/modal-bg.jpg") center center no-repeat;
+    background-size: cover;
+
+    max-width: 700px;
+    margin: 0 auto;
+
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    height: 350px;
+}
+
+.modal-verse {
+    height: 300px;
+}
+
+.modal-content {
+    position: relative;
+}
+
+.next-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.modal-content {
+    position: relative;
+}
+
+.modal-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: rgba(255, 240, 220, 0.85);
+}
+
+.modal-content::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background: #5c3a26;
+    margin-top: 40px;
+}
+
+.modal-content > * {
+    position: relative;
+    z-index: 1;
+}
+
+.modal-content h3 {
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.modal {
+    cursor: pointer;
+}
+
+.modal-content {
+    cursor: default;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 14px;
+    background: #4a3426;
+    color: #e5c7a1;
+    font-size: 13px;
+}
+
+.next-btn {
+    margin-top: 25px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #f2d7b5;
+    font-size: 12px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+    .hero {
+        padding: 100px 20px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .book-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .book-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .book-card img {
+        width: 140px;
+    }
+}
