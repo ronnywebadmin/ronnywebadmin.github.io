@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    color: #3a2a1f;
+    font-family: "EB Garamond", Georgia, serif;
+  }
+
+  a {
+    color: inherit;
+  }
+}

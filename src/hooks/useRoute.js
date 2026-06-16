@@ -1,0 +1,14 @@
+import { useEffect, useState } from 'react';
+import { getRoute } from '../routes';
+
+export function useRoute() {
+  const [route, setRoute] = useState(getRoute);
+
+  useEffect(() => {
+    const onHashChange = () => setRoute(getRoute());
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  return route;
+}
