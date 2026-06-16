@@ -45,6 +45,6 @@ export const authorCurrent = [
 
 export const authorComing = [
   ['images/splash.jpg', 'Splash'],
-  ['images/placeholder.svg', 'Carve'],
+  ['images/penelope.jpg', 'Penelope'],
   ['images/cider.jpg', "Stout's Cider Mill"],
 ];

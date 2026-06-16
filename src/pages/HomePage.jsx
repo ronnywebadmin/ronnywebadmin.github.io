@@ -58,7 +58,7 @@ export function HomePage() {
             <h1 className="text-[32px] font-normal leading-tight text-[#2c1912]">
               Ronald Lex &ldquo;Ronny&rdquo; Stout
             </h1>
-            <p className="mt-3 text-[16px] leading-relaxed">
+            <p className="mt-3 text-[15px] leading-relaxed">
               Stories shaped by faith, forged through perseverance, and written to leave something lasting behind.
             </p>
           </div>
@@ -129,8 +129,10 @@ export function HomePage() {
           <h1 className="text-[clamp(36px,3.83vw,60px)] font-normal leading-tight tracking-[0.02em] text-[#2c1912]">
             Ronald Lex &ldquo;Ronny&rdquo; Stout
           </h1>
-          <p className="mt-[0.7vw] text-[clamp(22px,2.04vw,32px)] leading-relaxed">
-            Stories shaped by faith, forged through perseverance, and written to leave something lasting behind - for readers who believe courage, character, and conviction still matter.
+          <p className="mt-[0.7vw] text-[clamp(20px,1.82vw,28px)] leading-relaxed">
+            Stories shaped by faith, forged through perseverance, and written to leave something lasting behind
+            <br />
+            - for readers who believe courage, character, and conviction still matter.
           </p>
         </section>
 
@@ -158,7 +160,7 @@ export function HomePage() {
           </a>
         </section>
 
-        <section className="absolute left-1/2 top-[76%] w-[58%] -translate-x-1/2 text-center">
+        <section className="absolute left-1/2 top-[72%] w-[58%] -translate-x-1/2 text-center">
           <HomeSectionTitle>Media & Assets</HomeSectionTitle>
           <div className="mx-auto mt-[2.5vw] w-[50vw] max-w-[760px] text-[clamp(18px,1.55vw,26px)] leading-relaxed">
           <p>
