@@ -1,49 +1,233 @@
 import { useState } from 'react';
 import { verses } from '../data/verses';
 
+const publicistEmail = 'jcastillo@exemplumcircle.com';
+const alternateEmail = 'johanna.castillo7878@gmail.com';
+const googleFormsEmail = 'ronnywebadmin@gmail.com';
+const googleFormAction = import.meta.env.VITE_GOOGLE_FORM_ACTION;
+const googleFormEntries = {
+  topic: import.meta.env.VITE_GOOGLE_FORM_TOPIC_ENTRY,
+  name: import.meta.env.VITE_GOOGLE_FORM_NAME_ENTRY,
+  email: import.meta.env.VITE_GOOGLE_FORM_EMAIL_ENTRY,
+  message: import.meta.env.VITE_GOOGLE_FORM_MESSAGE_ENTRY,
+};
+
+function PageTitle({ children }) {
+  return (
+    <h1 className="flex items-center justify-center gap-4 text-center text-[32px] font-bold uppercase tracking-[0.08em] text-[#281711] before:h-px before:flex-1 before:bg-[#5c3a26] before:content-[''] after:h-px after:flex-1 after:bg-[#5c3a26] after:content-[''] md:text-[46px]">
+      {children}
+    </h1>
+  );
+}
+
+function ContactLink({ label, value }) {
+  return (
+    <div className="block border border-[#c7aa77]/70 bg-[#f4ecde]/70 px-4 py-4 text-left shadow-sm">
+      <span className="block text-[12px] font-bold uppercase tracking-[0.12em] text-[#7b2a1a]">{label}</span>
+      <span className="mt-1 block break-words text-[17px] font-semibold leading-snug text-[#2d1a12]">{value}</span>
+    </div>
+  );
+}
+
+function FormField({ label, children }) {
+  return (
+    <label className="block text-left">
+      <span className="mb-2 block text-[12px] font-bold uppercase tracking-[0.12em] text-[#7b2a1a]">{label}</span>
+      {children}
+    </label>
+  );
+}
+
 export function ContactPage() {
-  const [currentVerse, setCurrentVerse] = useState(null);
-  const verse = currentVerse ? verses[currentVerse - 1] : null;
+  const [currentVerse, setCurrentVerse] = useState(1);
+  const [submitStatus, setSubmitStatus] = useState('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
+  const [form, setForm] = useState({
+    topic: 'Speaking inquiry',
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const verse = verses[currentVerse - 1];
+
+  function updateField(field, value) {
+    setForm((current) => ({ ...current, [field]: value }));
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!googleFormAction || Object.values(googleFormEntries).some((entry) => !entry)) {
+      setSubmitStatus('error');
+      setSubmitMessage('Google Forms is not configured yet.');
+      return;
+    }
+
+    setSubmitStatus('sending');
+    setSubmitMessage('');
+
+    try {
+      const formData = new FormData();
+      formData.append(googleFormEntries.topic, form.topic);
+      formData.append(googleFormEntries.name, form.name);
+      formData.append(googleFormEntries.email, form.email);
+      formData.append(googleFormEntries.message, form.message);
+
+      await fetch(googleFormAction, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData,
+      });
+
+      setSubmitStatus('success');
+      setSubmitMessage('Message submitted. Thank you.');
+      setForm({
+        topic: 'Speaking inquiry',
+        name: '',
+        email: '',
+        message: '',
+      });
+    } catch {
+      setSubmitStatus('error');
+      setSubmitMessage('Message could not be submitted. Please try again later.');
+    }
+  }
 
   return (
-    <section
-      className="min-h-screen bg-cover bg-center px-6 py-[160px] text-center"
-      style={{ backgroundImage: 'url("images/modal-bg.jpg")' }}
+    <main
+      className="min-h-screen bg-[#4b2c20] bg-cover bg-fixed bg-top px-4 py-10 text-[#2c1912] md:px-6 md:py-14"
+      style={{ backgroundImage: 'url("images/BG-VERSE.jpg")' }}
     >
-      <h2 className="mb-10 flex items-center justify-center gap-4 text-[30px] tracking-[2px] before:h-px before:flex-1 before:bg-[#5c3a26] before:content-[''] after:h-px after:flex-1 after:bg-[#5c3a26] after:content-['']">CONTACTS</h2>
-      <div className="mx-auto mb-5 max-w-[600px] text-[15px]">
-        <p><strong>Publicist:</strong> Johanna Castillo</p>
-        <p>Email: <a href="mailto:jcastillo@exemplumcircle.com">jcastillo@exemplumcircle.com</a>, <a href="mailto:johanna.castillo7878@gmail.com">johanna.castillo7878@gmail.com</a></p>
-      </div>
-      <form className="mx-auto flex max-w-[280px] flex-col items-center gap-3">
-        <input className="w-[280px] border border-[#5a3d2b] bg-white/85 p-2" type="text" placeholder="Name" required />
-        <input className="w-[280px] border border-[#5a3d2b] bg-white/85 p-2" type="email" placeholder="Email" required />
-        <textarea className="w-[280px] border border-[#5a3d2b] bg-white/85 p-2" placeholder="Comment" rows="5" required />
-        <button type="submit" className="mt-2 bg-[#4a3426] px-4 py-2 text-[13px] text-[#e5c7a1]">SEND</button>
-      </form>
+      <div className="mx-auto max-w-[1120px] px-4 py-8 md:px-8 md:py-10">
+        <PageTitle>Contacts</PageTitle>
 
-      {!currentVerse && (
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          {verses.map((_, index) => (
-            <button key={index + 1} type="button" onClick={() => setCurrentVerse(index + 1)} className="bg-[#4a3426] px-4 py-2 text-[13px] text-[#e5c7a1]">VERSE {index + 1}</button>
-          ))}
+        <div className="mx-auto mt-6 max-w-[720px] text-center text-[17px] leading-relaxed text-[#3a2a1f] md:text-[20px]">
+          <p>
+            For speaking invitations, media requests, reader notes, and publishing questions, please reach out through the publicist contact below or send a message with the form.
+          </p>
         </div>
-      )}
 
-      {verse && (
-        <div className="mt-8 w-full cursor-pointer" onClick={() => setCurrentVerse(null)}>
-          <div className="relative mx-auto flex h-[350px] max-w-[700px] cursor-default flex-col bg-cover bg-center p-8 before:absolute before:inset-0 before:bg-[#fff0dc]/85 before:content-['']" style={{ backgroundImage: 'url("images/modal-bg.jpg")' }} onClick={(event) => event.stopPropagation()}>
-            <div className="relative z-10 h-[300px]">
-              <h3 className="mb-4 tracking-[2px]">VERSE {currentVerse}</h3>
-              <div className="my-5 text-[16px] leading-loose">
-                <p><strong>{verse[0]}</strong></p>
-                <p>{verse[1]}</p>
+        <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <aside className="space-y-6">
+            <section className="border border-[#c7aa77]/70 bg-[#f4ecde]/72 p-5 shadow-lg md:p-6">
+              <h2 className="text-[24px] font-bold uppercase tracking-[0.05em] text-[#281711]">Start Here</h2>
+              <p className="mt-3 text-[16px] leading-relaxed text-[#3a2a1f]">
+                Include your event date, location, audience, and the best way to reply. For reader correspondence, a brief note is enough.
+              </p>
+              <div className="mt-5 grid gap-3">
+                <ContactLink label="Publicist" value="Johanna Castillo" />
+                <ContactLink label="Primary Email" value={publicistEmail} />
+                <ContactLink label="Alternate Email" value={alternateEmail} />
               </div>
+            </section>
+
+            <section className="border border-[#c7aa77]/70 bg-[#f4ecde]/72 p-5 shadow-lg md:p-6">
+              <div className="flex items-center justify-between gap-4">
+                <h2 className="text-[22px] font-bold uppercase tracking-[0.05em] text-[#281711]">Scripture</h2>
+                <span className="text-[12px] font-bold uppercase tracking-[0.12em] text-[#7b2a1a]">Verse {currentVerse}</span>
+              </div>
+              <blockquote className="mt-4 text-[18px] italic leading-relaxed text-[#2d1a12]">
+                <strong className="mb-2 block not-italic text-[#6d1f18]">{verse[0]}</strong>
+                {verse[1]}
+              </blockquote>
+              <div className="mt-5 grid grid-cols-4 gap-2">
+                {verses.map((_, index) => {
+                  const verseNumber = index + 1;
+                  return (
+                    <button
+                      key={verseNumber}
+                      type="button"
+                      onClick={() => setCurrentVerse(verseNumber)}
+                      className={`border px-3 py-2 text-[12px] font-bold uppercase tracking-[0.08em] ${currentVerse === verseNumber ? 'border-[#4b120f] bg-[#4b120f] text-[#f2d7b5]' : 'border-[#8b6a3d] bg-[#f8efdf]/70 text-[#4b120f]'}`}
+                    >
+                      {verseNumber}
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          </aside>
+
+          <section className="border border-[#c7aa77]/70 bg-[#f4ecde]/82 p-5 shadow-xl md:p-7">
+            <div className="mb-6">
+              <h2 className="text-[28px] font-bold uppercase tracking-[0.05em] text-[#281711]">Send a Message</h2>
+              <p className="mt-2 text-[15px] leading-relaxed text-[#5b3f2a]">
+                This submits directly to Google Forms without opening an email app.
+              </p>
             </div>
-            <button type="button" onClick={() => setCurrentVerse((currentVerse % verses.length) + 1)} className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 bg-[#4a3426] px-4 py-2 text-[13px] text-[#e5c7a1]">NEXT VERSE</button>
-          </div>
+
+            <form className="grid gap-5" onSubmit={handleSubmit}>
+              <FormField label="Inquiry Type">
+                <select
+                  className="w-full border border-[#8b6a3d] bg-[#fff8ec]/90 px-3 py-3 text-[16px] text-[#2d1a12] outline-none focus:border-[#4b120f]"
+                  value={form.topic}
+                  onChange={(event) => updateField('topic', event.target.value)}
+                >
+                  <option>Speaking inquiry</option>
+                  <option>Media request</option>
+                  <option>Reader message</option>
+                  <option>Publishing question</option>
+                  <option>General contact</option>
+                </select>
+              </FormField>
+
+              <div className="grid gap-5 md:grid-cols-2">
+                <FormField label="Name">
+                  <input
+                    className="w-full border border-[#8b6a3d] bg-[#fff8ec]/90 px-3 py-3 text-[16px] text-[#2d1a12] outline-none focus:border-[#4b120f]"
+                    type="text"
+                    value={form.name}
+                    onChange={(event) => updateField('name', event.target.value)}
+                    required
+                  />
+                </FormField>
+
+                <FormField label="Email">
+                  <input
+                    className="w-full border border-[#8b6a3d] bg-[#fff8ec]/90 px-3 py-3 text-[16px] text-[#2d1a12] outline-none focus:border-[#4b120f]"
+                    type="email"
+                    value={form.email}
+                    onChange={(event) => updateField('email', event.target.value)}
+                    required
+                  />
+                </FormField>
+              </div>
+
+              <FormField label="Message">
+                <textarea
+                  className="min-h-[190px] w-full resize-y border border-[#8b6a3d] bg-[#fff8ec]/90 px-3 py-3 text-[16px] leading-relaxed text-[#2d1a12] outline-none focus:border-[#4b120f]"
+                  value={form.message}
+                  onChange={(event) => updateField('message', event.target.value)}
+                  placeholder="Share the event details, media request, or message here."
+                  required
+                />
+              </FormField>
+
+              <div className="flex flex-col gap-3 border-t border-[#c7aa77] pt-5 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-[13px] leading-snug text-[#5b3f2a]">
+                  Responses are saved in Google Forms for {googleFormsEmail}.
+                </p>
+                <button
+                  type="submit"
+                  disabled={submitStatus === 'sending'}
+                  className="border border-[#f0c76a] bg-gradient-to-b from-[#d9ad4e] to-[#a97724] px-6 py-3 text-[13px] font-bold uppercase tracking-[0.08em] text-[#3a160f] disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {submitStatus === 'sending' ? 'Sending...' : 'Send Message'}
+                </button>
+              </div>
+              {submitMessage && (
+                <p
+                  className={`text-[14px] font-semibold ${submitStatus === 'success' ? 'text-[#225a28]' : 'text-[#8b1f18]'}`}
+                  role="status"
+                >
+                  {submitMessage}
+                </p>
+              )}
+            </form>
+          </section>
         </div>
-      )}
-    </section>
+      </div>
+    </main>
   );
 }
