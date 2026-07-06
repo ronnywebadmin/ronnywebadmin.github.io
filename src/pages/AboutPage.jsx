@@ -569,7 +569,6 @@ export function AboutPage() {
           <h3 className="mb-4 text-[25px] font-bold text-[#fff3d9]">Let's Stay Connected</h3>
           <p className="mb-4 text-[17px] leading-snug">Whether you're a reader, fellow believer, or interested in having me speak at your event, please reach out.</p>
           <a className="mb-4 inline-block bg-[#b17a22] px-6 py-3 text-[13px] font-bold uppercase text-[#fff2d2]" href="#/contact">Contact Ronny</a>
-          <p className="mb-2">520-253-1621</p>
           <p className="mb-2">ronstout85644@gmail.com</p>
           <p>P.O. Box 1100, Willcox, AZ 85644</p>
         </aside>
