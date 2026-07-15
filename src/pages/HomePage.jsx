@@ -1,46 +1,52 @@
 import { books } from '../data/books';
 
-function HomeSectionTitle({ children }) {
+function HomeSectionTitle({ children, light = false }) {
   return (
-    <h2 className="mx-auto flex w-full items-center justify-center gap-[1.6vw] text-center text-[clamp(27px,2.85vw,45px)] font-bold uppercase tracking-[0.08em] text-[#2f1b14] before:h-px before:flex-1 before:bg-[#6d4a31] before:content-[''] after:h-px after:flex-1 after:bg-[#6d4a31] after:content-['']">
+    <h2 className={`mx-auto flex w-full items-center justify-center gap-4 text-center text-[28px] font-bold uppercase tracking-[0.08em] before:h-px before:flex-1 before:content-[''] after:h-px after:flex-1 after:content-[''] md:text-[38px] ${light ? 'text-[#f5dcc0] before:bg-[#b98a55] after:bg-[#b98a55]' : 'text-[#2f1b14] before:bg-[#6d4a31] after:bg-[#6d4a31]'}`}>
       {children}
     </h2>
   );
 }
 
-function MobileHomeSectionTitle({ children }) {
+function TextButton({ href, children }) {
   return (
-    <h2 className="flex items-center justify-center gap-3 text-center text-[24px] font-bold uppercase tracking-[0.08em] text-[#2f1b14] before:h-px before:flex-1 before:bg-[#6d4a31] before:content-[''] after:h-px after:flex-1 after:bg-[#6d4a31] after:content-['']">
+    <a className="inline-flex min-h-10 items-center justify-center bg-[#4b2a19] px-6 py-2 text-[14px] font-bold uppercase tracking-[0.08em] text-[#f2d7b5] no-underline shadow-sm" href={href}>
       {children}
-    </h2>
+    </a>
   );
 }
 
-function CompactBookCard({ book }) {
+function HomeBookCard({ book }) {
   return (
-    <article className="grid min-h-[clamp(120px,9.5vw,160px)] grid-cols-[clamp(72px,6.3vw,94px)_minmax(0,1fr)] gap-[1.4vw] border border-[#5a3927] bg-[#d9b69e]/22 px-[1.2vw] py-[0.9vw] text-left shadow-sm">
-      <img className="h-[clamp(94px,7.6vw,126px)] w-[clamp(60px,4.9vw,78px)] justify-self-center object-cover shadow-sm" src={book.img} alt={book.alt} />
-      <div className="min-w-0 self-center text-center">
-        <h3 className="text-[clamp(18px,1.58vw,24px)] font-bold uppercase leading-tight text-[#2c1912]">{book.title}</h3>
-        <p className="mx-auto mt-1 max-w-[360px] text-[clamp(15px,1.22vw,20px)] leading-snug text-[#2c1912]">{book.text}</p>
-        <a className="mt-[0.7vw] inline-block bg-[#52341f] px-[1vw] py-[0.35vw] text-[clamp(18px,1.44vw,22px)] font-semibold text-[#f1d1a7] no-underline" href={book.url} target="_blank" rel="noopener noreferrer">
-          Amazon
-        </a>
-      </div>
+    <article className="grid min-h-[360px] grid-rows-[160px_auto_1fr_auto] border border-[#6a4a34] bg-[#d4aa8c]/30 px-5 py-5 text-center shadow-sm">
+      <img className="h-[150px] w-[96px] justify-self-center object-cover shadow-md" src={book.img} alt={book.alt} />
+      <h3 className="mt-3 text-[22px] font-bold uppercase leading-tight text-[#2b1811]">{book.title}</h3>
+      <p className="mt-2 text-[16px] leading-snug text-[#2b1811]">{book.text}</p>
+      <a className="mt-4 inline-flex min-h-9 items-center justify-center justify-self-center bg-[#4b2a19] px-5 py-2 text-[14px] font-semibold text-[#f2d7b5] no-underline" href={book.url} target="_blank" rel="noopener noreferrer">
+        Amazon
+      </a>
     </article>
   );
 }
 
-function MobileBookCard({ book }) {
+function MediaTile({ title, subtitle, image }) {
   return (
-    <article className="grid grid-cols-[92px_minmax(0,1fr)] gap-4 border border-[#5a3927] bg-[#ead0bb]/70 p-4 text-left shadow-sm">
-      <img className="h-[132px] w-[84px] object-cover shadow-sm" src={book.img} alt={book.alt} />
-      <div className="min-w-0 self-center">
-        <h3 className="text-[18px] font-bold uppercase leading-tight text-[#2c1912]">{book.title}</h3>
-        <p className="mt-2 text-[14px] leading-snug text-[#2c1912]">{book.text}</p>
-        <a className="mt-3 inline-block bg-[#52341f] px-4 py-2 text-[12px] font-semibold text-[#f1d1a7] no-underline" href={book.url} target="_blank" rel="noopener noreferrer">
-          Amazon
-        </a>
+    <article className="grid min-h-[300px] grid-rows-[1fr_auto] overflow-hidden border border-[#8c693f] bg-[#2e1b12] text-center text-[#f6e2c5] shadow-sm">
+      <div
+        className="flex min-h-[190px] items-end justify-center bg-cover bg-center px-5 py-6"
+        style={{
+          backgroundImage: `linear-gradient(180deg, rgba(30,16,8,.08), rgba(30,16,8,.78)), url("${image}")`,
+        }}
+      >
+        <h3 className="text-[24px] font-bold uppercase leading-tight tracking-[0.06em] [text-shadow:0_2px_4px_rgba(0,0,0,.45)]">
+          {title}
+        </h3>
+      </div>
+      <div className="px-5 py-5">
+        <p className="text-[17px] leading-snug">{subtitle}</p>
+        <div className="mt-4">
+          <TextButton href="#/media">Read More</TextButton>
+        </div>
       </div>
     </article>
   );
@@ -49,145 +55,77 @@ function MobileBookCard({ book }) {
 export function HomePage() {
   return (
     <main className="overflow-x-hidden bg-[#2b1715] text-[#2c1912]">
-      <div
-        className="bg-[#c99c80] bg-cover bg-top bg-no-repeat md:hidden"
-        style={{ backgroundImage: 'url("images/hero-bg.png")' }}
-      >
-        <section className="min-h-[520px] px-6 pt-[120px]">
-          <div className="ml-auto max-w-[235px] bg-[#ead0bb]/45 p-3 text-left">
-            <h1 className="text-[32px] font-normal leading-tight text-[#2c1912]">
-              Ronald Lex &ldquo;Ronny&rdquo; Stout
-            </h1>
-            <p className="mt-3 text-[15px] leading-relaxed">
-              Stories shaped by faith, forged through perseverance, and written to leave something lasting behind.
-            </p>
-          </div>
-        </section>
-
-        <section className="px-6 py-10 text-center">
-          <div className="bg-[#ead0bb]/72 px-4 py-6">
-            <MobileHomeSectionTitle>About the Author</MobileHomeSectionTitle>
-            <div className="mx-auto mt-6 max-w-[340px] text-[16px] leading-relaxed">
+      <section className="border-b border-[#b98a55] bg-[#ead8c3] px-5 py-12 md:px-8 md:py-16">
+        <div className="mx-auto grid max-w-[1180px] gap-9 md:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] md:items-center">
+          <div className="text-center md:text-left">
+            <HomeSectionTitle>About the Author</HomeSectionTitle>
+            <div className="mx-auto mt-7 max-w-[520px] text-[19px] leading-relaxed md:mx-0">
               <p>
                 If my grandmother would have had her way, I would have been Alexander Miller Stout V. My father, at IV, got so sick of the one bank in town, Glendale, California putting Dad's paychecks into HIS father's account that he went to Court and legally changed his official name to Lex Miller Stout.
               </p>
-              <p className="mt-3">
-                My father, at IV, got so sick of the one bank in town, Glendale, California...
-              </p>
+            </div>
+            <div className="mt-7">
+              <TextButton href="#/about">Read More</TextButton>
             </div>
           </div>
-        </section>
 
-        <section className="px-6 py-10 text-center">
-          <div className="bg-[#ead0bb]/76 px-4 py-6">
-            <MobileHomeSectionTitle>Books & Writing</MobileHomeSectionTitle>
-            <div className="mt-6 grid grid-cols-1 gap-4">
-              {books.map((book) => (
-                <MobileBookCard key={book.title} book={book} />
-              ))}
-            </div>
-            <a className="mt-6 inline-block bg-[#52341f] px-4 py-2 text-[12px] font-semibold text-[#f1d1a7] no-underline" href="#/books">
-              More Books
-            </a>
-          </div>
-        </section>
+          <figure className="border border-[#6a4a34] bg-[#f4ecde] p-1 shadow-lg">
+            <img className="h-full max-h-[330px] w-full object-cover" src="images/books-bg.png" alt="Books, ink, and writing materials" />
+          </figure>
+        </div>
+      </section>
 
-        <section className="px-6 py-10 text-center">
-          <div className="bg-[#ead0bb]/76 px-4 py-6">
-            <MobileHomeSectionTitle>Media & Assets</MobileHomeSectionTitle>
-            <div className="mx-auto mt-6 max-w-[340px] text-[16px] leading-relaxed">
-              <p>
-                For All Eternity<br />
-                By Ronald Lex Stout 2025
-              </p>
-              <p className="mt-3">
-                Key Bible Verses: Psalms 28:7; 40:3; 69:30 NIV
-              </p>
-              <p className="mt-3">
-                The composer gives permission for soloists and groups to adapt pronouns in performance.
-              </p>
-              <p className="mt-3">
-                This song has the Gospel of Jesus Christ embedded within the lyrics. Copyright applied for.
-              </p>
-            </div>
-            <a className="mt-6 inline-block bg-[#52341f] px-4 py-2 text-[12px] font-semibold text-[#f1d1a7] no-underline" href="#/media">
-              Media & Assets
-            </a>
-          </div>
-        </section>
-
-        <p className="px-6 pb-8 text-center text-[12px] text-[#f2d8bc]">
-          &copy; 2026 Ron Stout. All Rights Reserved
-        </p>
-      </div>
-
-      <div
-        className="relative hidden aspect-[1366/2852] w-full bg-[#c99c80] bg-[length:100%_100%] bg-top bg-no-repeat md:block"
-        style={{ backgroundImage: 'url("images/hero-bg.png")' }}
-      >
-        <section className="absolute left-[45.5%] top-[14%] w-[34%] text-left">
-          <h1 className="text-[clamp(36px,3.83vw,60px)] font-normal leading-tight tracking-[0.02em] text-[#2c1912]">
-            Ronald Lex &ldquo;Ronny&rdquo; Stout
-          </h1>
-          <p className="mt-[0.7vw] text-[clamp(20px,1.82vw,28px)] leading-relaxed">
-            Stories shaped by faith, forged through perseverance, and written to leave something lasting behind
-            <br />
-            - for readers who believe courage, character, and conviction still matter.
-          </p>
-        </section>
-
-        <section className="absolute left-1/2 top-[30%] w-[48%] -translate-x-1/2 text-center">
-          <HomeSectionTitle>About the Author</HomeSectionTitle>
-        </section>
-        <section className="absolute left-1/2 top-[32%] w-[45%] -translate-x-1/2 text-center text-[clamp(22px,2.04vw,32px)] leading-relaxed">
-          <p>
-            If my grandmother would have had her way, I would have been Alexander Miller Stout V. My father, at IV, got so sick of the one bank in town, Glendale, California putting Dad's paychecks into HIS father's account that he went to Court and legally changed his official name to Lex Miller Stout.
-          </p>
-          <p className="mt-[0.7vw]">
-            My father, at IV, got so sick of the one bank in town, Glendale, California...
-          </p>
-        </section>
-
-        <section className="absolute left-1/2 top-[47.4%] w-[82%] -translate-x-1/2 text-center">
+      <section className="border-b border-[#c6aa7a]/40 bg-[#8c6249] px-5 py-12 md:px-8 md:py-16">
+        <div className="mx-auto max-w-[1180px]">
           <HomeSectionTitle>Books & Writing</HomeSectionTitle>
-          <div className="mx-auto mt-[2.5vw] grid w-[74vw] max-w-[980px] grid-cols-2 gap-[1.3vw]">
-          {books.map((book) => (
-            <CompactBookCard key={book.title} book={book} />
-          ))}
+          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {books.map((book) => (
+              <HomeBookCard key={book.title} book={book} />
+            ))}
           </div>
-          <a className="mt-[2vw] inline-block bg-[#52341f] px-[1vw] py-[0.35vw] text-[clamp(18px,1.44vw,22px)] font-semibold text-[#f1d1a7] no-underline" href="#/books">
-          More Books
-          </a>
-        </section>
-
-        <section className="absolute left-1/2 top-[72%] w-[58%] -translate-x-1/2 text-center">
-          <HomeSectionTitle>Media & Assets</HomeSectionTitle>
-          <div className="mx-auto mt-[2.5vw] w-[50vw] max-w-[760px] text-[clamp(18px,1.55vw,26px)] leading-relaxed">
-          <p>
-            For All Eternity<br />
-            By Ronald Lex Stout 2025<br />
-            For All Eternity<br />
-            By Ronald Lex Stout 2025
-          </p>
-          <p className="mt-[0.7vw]">
-            Key Bible Verses: Psalms 28:7; 40:3; 69:30 NIV
-          </p>
-          <p className="mt-[0.7vw]">
-            The composer gives his permission for SOLOISTS to use the pronouns &ldquo;I, me, my, mine&rdquo;, etc., and for GROUPS to use &ldquo;we, our, ours, and us&rdquo; substitutions in the lyrics.
-          </p>
-          <p className="mt-[0.7vw]">
-            This song has the Gospel of Jesus Christ embedded within the lyrics. Various other Scriptures are reflected such as the Psalms 6:1 and 13:6, John 3:3 and others. There is an interesting background story concerning this song's composition, provided upon request. Copyright applied for.
-          </p>
+          <div className="mt-7 text-center">
+            <TextButton href="#/books">More Books</TextButton>
           </div>
-          <a className="mt-[1.7vw] inline-block bg-[#52341f] px-[1vw] py-[0.35vw] text-[clamp(18px,1.44vw,22px)] font-semibold text-[#f1d1a7] no-underline" href="#/media">
-          Media & Assets
-          </a>
-        </section>
+        </div>
+      </section>
 
-        <p className="absolute bottom-[1.6%] left-1/2 -translate-x-1/2 text-center text-[clamp(16px,1.3vw,20px)] text-[#f2d8bc]">
-          &copy; 2026 Ron Stout. All Rights Reserved
-        </p>
-      </div>
+      <section className="bg-[#21130d] px-5 py-12 text-[#f6e2c5] md:px-8 md:py-16">
+        <div className="mx-auto max-w-[1180px]">
+          <HomeSectionTitle light>Media & Assets</HomeSectionTitle>
+          <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(280px,1.25fr)]">
+            <MediaTile
+              title="For All Eternity"
+              subtitle="By Ronald Lex Stout 2025"
+              image="images/hero-bg-new.jpg"
+            />
+            <MediaTile
+              title="Praying With My Eyes Wide Open"
+              subtitle="By Ronald Lex Stout 2025"
+              image="images/media-bg.png"
+            />
+            <aside className="border border-[#8c693f] px-7 py-7 text-left">
+              <p className="text-center text-[18px] leading-snug">
+                <strong className="block font-bold">Key Bible Verses:</strong>
+                Psalms 28:7; 40:3; 69:30 NIV
+              </p>
+              <div className="my-6 h-px bg-[#8c693f]" />
+              <p className="text-[16px] leading-relaxed">
+                The composer gives his permission for SOLOISTS to use the pronouns "I, me, my, mine" etc., and for GROUPS to use "we, our, ours, and us" substitutions in the lyrics.
+              </p>
+              <p className="mt-4 text-[16px] leading-relaxed">
+                This song has the Gospel of Jesus Christ embedded within the lyrics. Various other Scriptures are reflected such as the Psalms 6:1 and 13:6, John 3:3 and others. There is an interesting background story concerning this song's composition, provided upon request. Copyright applied for.
+              </p>
+              <div className="mt-6 text-center">
+                <TextButton href="#/media">Read More</TextButton>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <p className="bg-[#21130d] px-6 pb-8 text-center text-[12px] uppercase tracking-[0.08em] text-[#f2d8bc]">
+        &copy; 2026 Ron Stout. All Rights Reserved
+      </p>
     </main>
   );
 }

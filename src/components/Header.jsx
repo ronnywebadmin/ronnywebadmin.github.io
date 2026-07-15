@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { PageBanner } from './PageBanner';
 
 export function Header({ route }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -66,6 +67,7 @@ export function Header({ route }) {
           Contact Ronny
         </a>
       </div>
+      <PageBanner route={route} />
     </header>
   );
 }

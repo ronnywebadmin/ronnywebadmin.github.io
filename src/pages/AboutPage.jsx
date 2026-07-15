@@ -325,30 +325,6 @@ function RanchBand() {
 export function AboutPage() {
   return (
     <main className="bg-[#eadfcb] text-left">
-      <section className="mx-auto max-w-[1440px] border-b-4 border-[#c6aa7a]">
-        <div
-          className="flex min-h-[520px] items-end justify-center bg-cover bg-center px-5 py-10 text-left [--about-hero-bg-size:cover] md:min-h-[430px] md:items-center md:bg-no-repeat md:px-[6%] md:py-12 md:[--about-hero-bg-size:92%_auto] xl:min-h-[560px] xl:py-20"
-          style={{
-            backgroundImage:
-              'linear-gradient(90deg, rgba(239,228,210,.02), rgba(239,228,210,.12) 30%, rgba(239,228,210,.84) 52%, rgba(239,228,210,.18)), url("images/Banner-No Texts.png")',
-            backgroundPosition: 'center 42%',
-            backgroundSize: 'var(--about-hero-bg-size)',
-          }}
-        >
-        <div className="max-w-[640px] rounded-sm bg-[#f4ecde]/75 p-4 md:ml-[20%] md:bg-transparent md:p-0 xl:ml-[30%]">
-          <p className="mb-3 flex items-center justify-center gap-4 text-[15px] font-bold uppercase tracking-[0.1em] text-[#6b2a18] before:h-px before:w-[70px] before:bg-[#7b5c35] before:content-[''] after:h-px after:w-[70px] after:bg-[#7b5c35] after:content-['']">
-            About Ronny
-          </p>
-          <h1 className="mb-4 text-left text-[38px] font-bold leading-[.98] tracking-normal text-[#21120e] md:text-[46px] xl:mb-7 xl:text-[68px]">
-            Meet Ronald Lex "Ronny" Stout
-          </h1>
-          <p className="max-w-[560px] text-[16px] leading-normal text-[#3a2a1f] xl:text-[20px]">
-            For more than nine decades, Ronald Stout has lived a life defined by faith, resilience, service, and purpose. From serving as a Navy officer during the Korean War to building a nationally recognized cider mill and authoring Christian books, his journey reflects perseverance and God's guidance.
-          </p>
-        </div>
-        </div>
-      </section>
-
       <section className="!p-0 mx-auto grid max-w-[1325px] grid-cols-1 text-left md:grid-cols-12">
         <article className={`col-span-1 grid min-h-[300px] grid-rows-[auto_1fr] overflow-hidden border-b ${border} ${paper} px-5 py-6 md:col-span-5 md:border-r md:px-6 xl:min-h-[375px] xl:px-8 xl:py-7`}>
           <div className="flex items-center gap-3">
@@ -491,20 +467,15 @@ export function AboutPage() {
           </div>
         </article>
 
-        <article
-          className={`relative col-span-1 min-h-[560px] overflow-hidden border-b ${border} ${paper} bg-cover bg-center md:col-span-6 md:min-h-[360px] xl:min-h-[410px]`}
-          style={{
-            backgroundImage: 'url("images/section7-whole.png")',
-          }}
-        >
-
-          <div className="relative z-10 max-w-[78%] bg-[#f4ecde]/80 px-5 py-6 md:max-w-[43%] md:bg-transparent md:px-7 xl:px-12 xl:py-9">
+        <article className={`col-span-1 overflow-hidden border-b ${border} ${paper} md:col-span-6`}>
+          <div className="px-5 py-6 md:px-7 xl:px-12 xl:py-9">
             <SectionTitle number="7">Family, Faith & Loss</SectionTitle>
-            <p className="mt-5 text-[16px] font-semibold leading-snug text-[#2d1a12]">
-              Ronald was married to his beloved wife for 49 wonderful years until her passing in February 2020. They built a life rooted in faith, family, and hard work.
-            </p>
-            <FamilyIconList />
           </div>
+          <img
+            className="block w-full border-t border-[#d4bd95] object-cover"
+            src="images/For Section 7 (updated photo).png"
+            alt="Family, marriage, children, grandchildren, faith journey, and losing his wife"
+          />
 
           <blockquote className="hidden absolute bottom-10 left-[47%] z-10 w-[260px] border border-[#d2bd9c] bg-[#f8efdf]/90 p-4 text-center text-[18px] italic leading-snug text-[#16304a] shadow-lg">
             <span className="absolute left-5 top-[-18px] text-[58px] leading-none text-[#a37b32]">“</span>
@@ -557,12 +528,14 @@ export function AboutPage() {
           <p className="mt-5 max-w-[520px] text-[17px] leading-snug text-[#fff2d8]">
             At 95 years old, Ronald Stout remains committed to sharing stories of faith, perseverance, and purpose. His mission continues through every book he writes and every life he touches.
           </p>
-          <blockquote className="relative mt-7 max-w-[560px] pl-10 text-[23px] italic leading-tight text-[#fff3d9]">
+          <blockquote className="relative mt-7 max-w-[600px] pl-10 text-[23px] italic leading-tight text-[#fff3d9]">
+            <span className="absolute left-0 top-[-8px] text-[60px] not-italic leading-none text-[#d2a23a]">&ldquo;</span>
+            I am the Way, the Truth, and the Life. No man comes to the Father, but by Me.
+            <span className="ml-1 not-italic">&rdquo;</span>
+            <cite className="mt-3 block text-[17px] not-italic text-[#fff2d8]">John 14:6</cite>
+          </blockquote>
+          <blockquote className="hidden">
             <span className="absolute left-0 top-[-8px] text-[60px] not-italic leading-none text-[#d2a23a]">“</span>
-            I have fought the good fight,<br />
-            I have finished the race,<br />
-            I have kept the faith.”
-            <cite className="mt-3 block text-[17px] not-italic text-[#fff2d8]">2 Timothy 4:7</cite>
           </blockquote>
         </article>
         <aside className="border-l border-[#c6aa7a]/50 bg-[#53140f] px-7 py-10 text-[#fff1d7] md:px-10 xl:px-12 xl:py-14">
