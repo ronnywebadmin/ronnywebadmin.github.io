@@ -3,7 +3,7 @@ export const routes = {
   books: { label: 'Books & Writing', className: 'books-page' },
   media: { label: 'Media & Assets', className: 'media-page' },
   about: { label: 'About Ronny', className: 'about-page' },
-  contact: { label: 'Contacts', className: 'contact-page' },
+  contact: { label: 'Contact Ronny', className: 'contact-page' },
 };
 
 export function getRoute() {
