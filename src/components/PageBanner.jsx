@@ -1,34 +1,81 @@
 const bannerContent = {
   home: {
-    eyebrow: '',
     title: 'Ronald Lex "Ronny" Stout',
     text: 'Stories shaped by faith, forged through perseverance, and written to leave something lasting behind - for readers who believe courage, character, and conviction still matter.',
   },
   books: {
-    eyebrow: 'Books & Writing',
-    title: 'Stories of Faith, Grit, and Conviction',
-    text: 'Books written to inspire readers through perseverance, courage, history, sports, and Christian faith.',
+    title: 'BOOKS & WRITING',
+    text: 'Stories of faith, perseverance, and purpose that inspire and uplift.',
   },
   media: {
-    eyebrow: 'Media & Assets',
-    title: 'Lyrics, Scripture, and Creative Work',
-    text: 'Songs and media resources rooted in worship, testimony, and the enduring message of the Gospel.',
+    title: 'MEDIA & ASSETS',
+    text: "Lyrics and media resources from Ronny's original songs.",
   },
   about: {
-    eyebrow: 'About Ronny',
-    title: 'Meet Ronald Lex "Ronny" Stout',
-    text: "For more than nine decades, Ronald Stout has lived a life defined by faith, resilience, service, and purpose. From serving as a Navy officer during the Korean War to building a nationally recognized cider mill and authoring Christian books, his journey reflects perseverance and God's guidance.",
-    plainText: true,
+    title: 'ABOUT RONNY',
+    text: "A life shaped by faith, service, family, and stories still being written.",
   },
   contact: {
-    eyebrow: 'Contacts',
-    title: 'Connect With Ronny',
-    text: 'For speaking invitations, media requests, reader notes, and publishing questions, please reach out.',
+    title: 'CONTACT RONNY',
+    text: "We'd love to hear from you. Let's connect!",
   },
 };
 
+function Ornament() {
+  return (
+    <div className="mx-auto my-[clamp(6px,1.6vw,20px)] flex max-w-[280px] items-center gap-3 text-[#4b2a19]">
+      <span className="h-px flex-1 bg-[#4b2a19]" />
+      <span className="text-[24px] leading-none">&loz;</span>
+      <span className="h-px flex-1 bg-[#4b2a19]" />
+    </div>
+  );
+}
+
+function FullImageBanner({ content, home = false }) {
+  return (
+    <section className="bg-[#eadfcb] text-[#2c1912]">
+      <div className="relative mx-auto max-w-[1440px] overflow-hidden border-b border-[#8d6745] bg-[#eadfcb]">
+        <img
+          className="block h-auto w-full"
+          src="images/Banner-No Texts.png"
+          alt=""
+          aria-hidden="true"
+        />
+        {home ? (
+          <div className="absolute right-[4%] top-[7%] w-[61%] text-center sm:top-[8%] md:right-[5%] md:w-[58%]">
+            <h1 className="text-[clamp(17px,5.2vw,76px)] font-bold leading-[.98] tracking-normal text-[#24130d] [text-shadow:0_1px_0_rgba(255,246,228,.75)]">
+              {content.title}
+            </h1>
+            <p className="mx-auto mt-[clamp(4px,1.8vw,24px)] max-w-[620px] text-[clamp(9px,2.15vw,28px)] italic leading-snug text-[#2f1b14]">
+              {content.text}
+            </p>
+          </div>
+        ) : (
+          <div className="absolute right-[4%] top-[12%] w-[61%] text-center md:right-[6%] md:top-[14%] md:w-[56%]">
+            <h1 className="text-[clamp(18px,5vw,76px)] font-bold uppercase leading-none tracking-[0.03em] text-[#24130d] [text-shadow:0_1px_0_rgba(255,246,228,.75)]">
+              {content.title}
+            </h1>
+            <Ornament />
+            <p className="mx-auto max-w-[520px] text-[clamp(10px,2vw,28px)] italic leading-snug text-[#2f1b14]">
+              {content.text}
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export function PageBanner({ route }) {
   const content = bannerContent[route] ?? bannerContent.home;
+
+  if (route === 'home') {
+    return <FullImageBanner content={content} home />;
+  }
+
+  if (route === 'books' || route === 'media' || route === 'about' || route === 'contact') {
+    return <FullImageBanner content={content} />;
+  }
 
   return (
     <section className="bg-[#eadfcb] text-[#2c1912]">

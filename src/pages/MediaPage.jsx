@@ -81,6 +81,7 @@ const prayingLyrics = [
       'Praying with my eyes wide open.',
       'Praying with my eyes wide open.',
     ],
+    emphasis: true,
   },
   {
     lines: [
@@ -95,6 +96,7 @@ const prayingLyrics = [
       'Praying with my eyes wide open.',
       'Praying with my eyes wide open.',
     ],
+    emphasis: true,
   },
   {
     lines: [
@@ -102,10 +104,6 @@ const prayingLyrics = [
       'I need some coaching.',
       'Proverbs Twenty-two O three,',
       'Proverbs Twenty-two O three.',
-    ],
-  },
-  {
-    lines: [
       'O, trouble approaching,',
       'I need some coaching.',
       'Proverbs Twenty-two O three,',
@@ -117,6 +115,7 @@ const prayingLyrics = [
       'Praying with my eyes wide open.',
       'Praying with my eyes wide open.',
     ],
+    emphasis: true,
   },
   {
     lines: [
@@ -141,32 +140,43 @@ const prayingLyrics = [
       'Praying with my eyes wide open.',
       'Praying with my eyes wide open.',
     ],
+    emphasis: true,
   },
 ];
 
-function SectionHeading({ children }) {
+function Ornament() {
   return (
-    <h2 className="mb-10 flex items-center justify-center gap-4 text-center text-[26px] font-bold uppercase tracking-[0.08em] text-[#2b1911] before:h-px before:flex-1 before:bg-[#5c3a26] before:content-[''] after:h-px after:flex-1 after:bg-[#5c3a26] after:content-[''] md:text-[34px]">
-      {children}
-    </h2>
+    <div className="mx-auto my-5 flex max-w-[360px] items-center gap-3 text-[#6b4225]">
+      <span className="h-px flex-1 bg-[#6b4225]" />
+      <span className="text-[22px] leading-none">&loz;</span>
+      <span className="h-px flex-1 bg-[#6b4225]" />
+    </div>
   );
 }
 
-function LyricBlock({ section }) {
+function MusicMark() {
   return (
-    <section className="pt-5 first:pt-0">
+    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#8b4d24] text-[34px] leading-none text-[#f7e2c4] shadow-sm md:h-16 md:w-16 md:text-[40px]">
+      &#9834;
+    </span>
+  );
+}
+
+function LyricBlock({ section, centered = false }) {
+  return (
+    <section className={`${centered ? 'text-center' : ''} mt-4 first:mt-0`}>
       {section.title && (
-        <h3 className="mb-3 text-[17px] font-bold uppercase tracking-[0.12em] text-[#6a2418]">
+        <h3 className="mb-1 text-[15px] font-bold italic text-[#7b371d] md:text-[16px]">
           {section.title}
         </h3>
       )}
-      <div className="space-y-1 text-[18px] leading-relaxed text-[#302018] md:text-[21px]">
-        {section.lines.map((line) => (
-          <p key={line}>{line}</p>
+      <div className={`${section.emphasis ? 'font-bold' : ''} space-y-[1px] text-[15px] leading-tight text-[#170d08] md:text-[16px]`}>
+        {section.lines.map((line, index) => (
+          <p key={`${line}-${index}`}>{line}</p>
         ))}
       </div>
       {section.finale && (
-        <div className="mt-6 space-y-1 text-[22px] font-bold uppercase tracking-[0.12em] text-[#4b120f] md:text-[28px]">
+        <div className="mt-7 space-y-1 text-center text-[22px] font-bold uppercase leading-tight tracking-[0.08em] text-[#170d08] md:text-[26px]">
           {section.finale.map((line) => (
             <p key={line}>{line}</p>
           ))}
@@ -176,60 +186,107 @@ function LyricBlock({ section }) {
   );
 }
 
+function DownloadPrompt({ href, fileName }) {
+  return (
+    <a
+      className="mt-8 flex items-center justify-center gap-3 text-[18px] text-[#7b371d] no-underline md:text-[22px]"
+      href={href}
+      download={fileName}
+    >
+      <span className="text-[26px] leading-none">&#8681;</span>
+      <span className="border-b border-[#7b371d] leading-tight">Download Lyrics (PDF)</span>
+    </a>
+  );
+}
+
+function SongPanel({ children }) {
+  return (
+    <article
+      className="flex h-full flex-col border border-[#6f5237] bg-[#f4e4cc]/72 px-4 py-6 shadow-sm sm:px-6 sm:py-7 md:px-9 md:py-9"
+      style={{
+        clipPath:
+          'polygon(16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px), 0 16px)',
+      }}
+    >
+      {children}
+    </article>
+  );
+}
+
 export function MediaPage() {
   return (
-    <main
-      className="min-h-screen bg-[#4b2c20] bg-cover bg-fixed bg-top px-4 py-10 text-[#2c1912] md:px-6 md:py-16"
-      style={{ backgroundImage: 'url("images/BG-VERSE.jpg")' }}
-    >
-      <article className="mx-auto max-w-[980px] px-5 py-8 md:px-12 md:py-12">
-        <SectionHeading>Media & Assets</SectionHeading>
+    <main className="bg-[#eadfcb] text-[#1b100b]">
+      <section
+        className="mx-auto max-w-[1440px] bg-[#eadfcb] bg-cover bg-center px-4 py-6 sm:px-5 sm:py-7 md:px-8 md:py-9"
+        style={{ backgroundImage: 'url("images/homebg1.png")' }}
+      >
+        <div className="grid gap-6 lg:grid-cols-2">
+          <SongPanel>
+            <header className="flex items-start gap-3 sm:gap-5">
+              <MusicMark />
+              <div>
+                <p className="text-[18px] font-bold uppercase leading-none text-[#3a2014]">Song Lyrics</p>
+                <h2 className="mt-2 text-[28px] font-bold uppercase leading-none tracking-[0.02em] text-[#2a160f] sm:text-[34px] md:text-[45px]">
+                  For All Eternity
+                </h2>
+                <p className="mt-3 text-[17px] leading-snug">By Ronald Lex Stout (2025)</p>
+                <p className="mt-1 text-[16px] leading-snug">Key Bible Verses: Psalms 28:7; 40:3; 69:30 NIV</p>
+              </div>
+            </header>
 
-        <header className="text-center">
-          <p className="text-[14px] font-bold uppercase tracking-[0.16em] text-[#7b2a1a]">Song Lyrics</p>
-          <h1 className="mt-2 text-[36px] font-bold uppercase leading-tight tracking-[0.04em] text-[#24130d] md:text-[52px]">
-            For All Eternity
-          </h1>
-          <p className="mt-3 text-[18px] text-[#3a2a1f] md:text-[22px]">By Ronald Lex Stout (2025)</p>
-          <p className="mt-2 text-[15px] font-semibold text-[#5d4228] md:text-[18px]">
-            Key Bible Verses: Psalms 28:7; 40:3; 69:30 NIV
-          </p>
-        </header>
+            <div className="mt-7 space-y-3 text-[14px] italic leading-tight text-[#170d08] md:text-[15px]">
+              <p>
+                The composer gives his permission for SOLOISTS to use the pronouns "I, me, my, mine" etc.; and for GROUPS to use "we, our, ours, and us" substitutions in the lyrics. Cowboy style emphasis on the CAPITALIZED word or partial word.
+              </p>
+              <p>
+                This song has the Gospel of Jesus Christ embedded within the lyrics. Various other Scriptures are reflected such as Psalms 6:1 and 13:6, John 14:6, John 3:3 and others. There is an interesting background story concerning this song's composition, provided upon request. Copyright applied for.
+              </p>
+            </div>
 
-        <aside className="mx-auto mt-8 max-w-[820px] px-4 py-5 text-left text-[15px] leading-relaxed text-[#3a2a1f] md:px-6 md:text-[17px]">
-          <p>
-            The composer gives his permission for SOLOISTS to use the pronouns "I, me, my, mine" etc.; and for GROUPS to use "we, our, ours, and us" substitutions in the lyrics. Cowboy style emphasis on the CAPITALIZED word or partial word.
-          </p>
-          <p className="mt-3">
-            This song has the Gospel of Jesus Christ embedded within the lyrics. Various other Scriptures are reflected such as Psalms 6:1 and 13:6, John 14:6, John 3:3 and others. There is an interesting background story concerning this song's composition, provided upon request. Copyright applied for.
-          </p>
-        </aside>
+            <Ornament />
 
-        <div className="mx-auto mt-10 grid max-w-[860px] gap-7 text-center">
-          {lyricSections.map((section, index) => (
-            <LyricBlock key={`${section.title ?? 'verse'}-${index}`} section={section} />
-          ))}
+            <div className="grow">
+              {lyricSections.map((section, index) => (
+                <LyricBlock key={`${section.title ?? 'verse'}-${index}`} section={section} />
+              ))}
+            </div>
+
+            <DownloadPrompt
+              href="assets/For%20All%20Eternity_Lyrics.pdf"
+              fileName="For All Eternity Lyrics.pdf"
+            />
+          </SongPanel>
+
+          <SongPanel>
+            <header className="flex items-start gap-3 sm:gap-5">
+              <MusicMark />
+              <div>
+                <p className="text-[18px] font-bold uppercase leading-none text-[#3a2014]">Song Lyrics</p>
+                <h2 className="mt-2 text-[27px] font-bold uppercase leading-none tracking-[0.02em] text-[#2a160f] sm:text-[33px] md:text-[43px]">
+                  Praying With<br />My Eyes Wide Open
+                </h2>
+              </div>
+            </header>
+
+            <p className="mx-auto mt-6 max-w-[520px] text-center text-[16px] italic leading-snug md:text-[18px]">
+              A song for pilots, emergency vehicle drivers, truck drivers, and anyone driving the highways at high speeds
+            </p>
+            <p className="mt-5 text-center text-[18px] leading-snug">By Ronald Stout</p>
+            <Ornament />
+
+            <div className="mx-auto w-full max-w-[560px] grow">
+              {prayingLyrics.map((section, index) => (
+                <LyricBlock key={`praying-${index}`} section={section} />
+              ))}
+            </div>
+
+            <DownloadPrompt
+              href="assets/Praying%20With%20My%20Eyes%20Wide%20Open_Lyrics.pdf"
+              fileName="Praying With My Eyes Wide Open Lyrics.pdf"
+            />
+          </SongPanel>
         </div>
-
-        <div className="mx-auto my-14 h-px max-w-[760px] bg-[#6d4a31]/55" />
-
-        <header className="text-center">
-          <p className="text-[14px] font-bold uppercase tracking-[0.16em] text-[#7b2a1a]">Song Lyrics</p>
-          <h1 className="mt-2 text-[32px] font-bold uppercase leading-tight tracking-[0.04em] text-[#24130d] md:text-[48px]">
-            Praying With My Eyes Wide Open
-          </h1>
-          <p className="mx-auto mt-3 max-w-[760px] text-[16px] italic leading-relaxed text-[#3a2a1f] md:text-[20px]">
-            A song for pilots, emergency vehicle drivers, truck drivers, and anyone driving the highways at high speeds
-          </p>
-          <p className="mt-3 text-[18px] text-[#3a2a1f] md:text-[22px]">By Ronald Stout</p>
-        </header>
-
-        <div className="mx-auto mt-10 grid max-w-[860px] gap-7 text-center">
-          {prayingLyrics.map((section, index) => (
-            <LyricBlock key={`praying-${index}`} section={section} />
-          ))}
-        </div>
-      </article>
+      </section>
     </main>
   );
 }

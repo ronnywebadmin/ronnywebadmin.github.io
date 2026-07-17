@@ -10,7 +10,7 @@ function SectionTitle({ number, children, light = false }) {
       <span className="grid h-8 w-8 shrink-0 place-items-center bg-[#4b120f] text-lg font-bold leading-none text-[#f2d7b5]">
         {number}
       </span>
-      <h2 className={`${heading} !text-[24px] md:!text-[28px] !leading-none ${light ? 'text-[#fff3d9]' : ''}`}>
+      <h2 className={`${heading} min-w-0 !text-[22px] sm:!text-[24px] md:!text-[28px] !leading-tight md:!leading-none ${light ? 'text-[#fff3d9]' : ''}`}>
         {children}
       </h2>
     </div>
@@ -22,7 +22,7 @@ function CheckList({ items, light = false }) {
     <ul className={`mt-5 space-y-2 text-[16px] leading-snug ${light ? 'text-[#f8e8c8]' : 'text-[#2d1a12]'}`}>
       {items.map((item) => (
         <li key={item} className="flex gap-3">
-          <span className="font-bold text-[#b88a35]">✓</span>
+          <span className="font-bold text-[#b88a35]">&#10003;</span>
           <span>{item}</span>
         </li>
       ))}
@@ -147,7 +147,7 @@ function BookStrip({ title, books }) {
       <h3 className="absolute left-1/2 top-[-10px] -translate-x-1/2 bg-[#f4ecde] px-4 text-[13px] font-bold uppercase tracking-[0.08em] text-[#6d5a37]">
         {title}
       </h3>
-      <div className={`grid gap-3 ${books.length > 3 ? 'grid-cols-2 sm:grid-cols-4 md:grid-cols-8' : 'grid-cols-3'}`}>
+      <div className={`grid gap-3 ${books.length > 3 ? 'grid-cols-2 sm:grid-cols-4 md:grid-cols-8' : 'grid-cols-2 sm:grid-cols-3'}`}>
         {books.map(([src, caption]) => (
           <figure key={caption} className="min-w-0 text-center">
             <img className="h-[130px] w-full border border-[#c9b38c] object-cover shadow-md md:h-[118px]" src={src} alt={`${caption} book cover`} />
@@ -260,18 +260,18 @@ function CiderFeatureIcon({ type }) {
 
 function RanchBand() {
   const ranchItems = [
-    ['■', 'Ranching'],
-    ['✿', 'Apple Orchards'],
-    ['✈', 'Private Pilot'],
-    ['◐', 'Horsemanship'],
-    ['╱', 'Agriculture'],
+    'Ranching',
+    'Apple Orchards',
+    'Private Pilot',
+    'Horsemanship',
+    'Agriculture',
   ];
 
   const stats = [
-    ['✈', '700+', 'Pilot Hours'],
-    ['▦', '1,040', 'Acres of Ranch'],
-    ['▤', '11+', 'Published Books'],
-    ['♡', '49', 'Years Married'],
+    ['700+', 'Pilot Hours'],
+    ['1,040', 'Acres of Ranch'],
+    ['11+', 'Published Books'],
+    ['49', 'Years Married'],
   ];
 
   return (
@@ -292,7 +292,7 @@ function RanchBand() {
           </p>
         </div>
         <div className="mt-8 grid max-w-[760px] grid-cols-2 gap-4 sm:grid-cols-3 md:mt-0 md:grid-cols-5 md:gap-3 xl:gap-4">
-          {ranchItems.map(([, label]) => (
+          {ranchItems.map((label) => (
             <div key={label} className="flex flex-col items-center gap-2 xl:gap-3 text-center text-[11px] xl:text-[13px] font-bold uppercase text-[#fff6df] [text-shadow:0_1px_3px_rgba(0,0,0,.55)]">
               <span className="grid h-[52px] w-[52px] xl:h-[66px] xl:w-[66px] place-items-center rounded-full border-2 border-[#fff6df]/90 p-3 text-[#fff6df]">
                 <RanchIcon label={label} />
@@ -305,7 +305,7 @@ function RanchBand() {
 
       <div className="self-center border border-[#745330]/40 bg-[#f8efdf]/90 shadow-xl">
         <div className="grid grid-cols-2">
-          {stats.map(([, value, label], index) => (
+          {stats.map(([value, label], index) => (
             <div key={label} className={`grid min-h-[82px] xl:min-h-[105px] grid-cols-[32px_1fr] xl:grid-cols-[42px_1fr] items-center gap-2 xl:gap-3 px-4 xl:px-6 text-[#3a2a1f] ${index % 2 === 0 ? 'border-r' : ''} ${index < 2 ? 'border-b' : ''} border-[#745330]/25`}>
               <span className="grid h-8 w-8 place-items-center text-[#7d5731] xl:h-10 xl:w-10">
                 <RanchStatIcon label={label} />
@@ -325,7 +325,7 @@ function RanchBand() {
 export function AboutPage() {
   return (
     <main className="bg-[#eadfcb] text-left">
-      <section className="!p-0 mx-auto grid max-w-[1325px] grid-cols-1 text-left md:grid-cols-12">
+      <section className="!p-0 mx-auto grid max-w-[1440px] grid-cols-1 text-left md:grid-cols-12">
         <article className={`col-span-1 grid min-h-[300px] grid-rows-[auto_1fr] overflow-hidden border-b ${border} ${paper} px-5 py-6 md:col-span-5 md:border-r md:px-6 xl:min-h-[375px] xl:px-8 xl:py-7`}>
           <div className="flex items-center gap-3">
             <span className="grid h-8 w-8 shrink-0 place-items-center bg-[#4b120f] text-lg font-bold leading-none text-[#f2d7b5]">
@@ -350,7 +350,7 @@ export function AboutPage() {
             </div>
             <div className="hidden">
               <span className="h-px flex-1 bg-[#d0ad62]" />
-              <span className="text-[18px] leading-none">◇</span>
+              <span className="text-[18px] leading-none">&loz;</span>
               <span className="h-px flex-1 bg-[#d0ad62]" />
             </div>
             <ul className="space-y-3 text-[15px] xl:text-[17px] leading-snug text-[#3a2a1f]">
@@ -383,7 +383,7 @@ export function AboutPage() {
           }}
         >
           <SectionTitle number="2">Education & Formation</SectionTitle>
-          <div className="mt-12 grid max-w-full grid-cols-2 gap-x-4 gap-y-10 text-center md:max-w-[88%] md:grid-cols-4 md:gap-3 xl:mt-20 xl:max-w-[82%] xl:gap-5">
+          <div className="mt-10 grid max-w-full grid-cols-1 gap-x-4 gap-y-10 text-center sm:grid-cols-2 md:mt-12 md:max-w-[88%] md:grid-cols-4 md:gap-3 xl:mt-20 xl:max-w-[82%] xl:gap-5">
             {[
               ['#6d1f18', 'Occidental College', "Bachelor's Degree"],
               ['#173242', 'LIFE Pacific College', 'Theology and Greek Studies'],
@@ -410,13 +410,13 @@ export function AboutPage() {
             backgroundSize: 'var(--war-bg-size)',
           }}
         >
-          <div className="relative z-10 -ml-5 -my-6 max-w-[455px] bg-gradient-to-r from-[#020406] from-[0%] via-[#020406]/90 via-[42%] to-transparent px-5 py-6 pr-10 md:-ml-7 md:px-7 md:pr-16 xl:-ml-12 xl:-my-9 xl:px-12 xl:py-9 xl:pr-20">
+          <div className="relative z-10 -ml-5 -my-6 max-w-[455px] bg-gradient-to-r from-[#020406] from-[0%] via-[#020406]/90 via-[42%] to-transparent px-5 py-6 pr-5 md:-ml-7 md:px-7 md:pr-16 xl:-ml-12 xl:-my-9 xl:px-12 xl:py-9 xl:pr-20">
             <SectionTitle number="3" light>Service During the Korean War</SectionTitle>
             <p className="mt-6 max-w-[520px] text-[18px] leading-snug">
               As a Navy Officer aboard the USS Gurke during the Korean War, Ronny experienced firsthand the realities of military service and leadership under pressure.
             </p>
             <CheckList light items={['Korean War Veteran', 'USS Gurke DD-783', 'Missions near hostile North Korea', 'Stories later documented in military history accounts']} />
-            <a className="mt-5 inline-block bg-[#b17a22] px-5 py-3 text-[13px] font-bold uppercase text-[#fff2d2]" href="#/contact">Read Military Experiences</a>
+            <a className="mt-5 inline-block bg-[#b17a22] px-4 py-3 text-[12px] font-bold uppercase text-[#fff2d2] sm:px-5 sm:text-[13px]" href="#/contact">Read Military Experiences</a>
           </div>
         </article>
 
@@ -432,11 +432,12 @@ export function AboutPage() {
 
         <RanchBand />
 
+        <div className="col-span-1 grid grid-cols-1 md:col-span-12 md:grid-cols-[minmax(0,4fr)_minmax(0,6fr)]">
         <article
-          className={`relative col-span-1 min-h-[520px] overflow-hidden border-b ${border} ${paper} md:col-span-6 md:min-h-[360px] md:border-r xl:min-h-[410px]`}
+          className={`relative min-h-[520px] overflow-hidden border-b ${border} ${paper} md:min-h-[360px] md:border-r xl:min-h-[410px]`}
         >
           <img
-            className="absolute right-0 top-0 z-0 h-full w-full object-cover opacity-45 md:h-auto md:w-[74%] md:opacity-100"
+            className="absolute right-0 top-0 z-0 h-[72%] w-[72%] object-cover opacity-45 md:w-[100%] md:opacity-100"
             src="images/stouts.jpg"
             alt=""
             aria-hidden="true"
@@ -447,9 +448,9 @@ export function AboutPage() {
           />
           <div className="relative z-10 max-w-[460px] px-5 py-6 md:px-7 xl:px-12 xl:py-9">
             <SectionTitle number="6">The Story of Stout's Cider Mill</SectionTitle>
-            <div className="mt-[50px] inline-block bg-gradient-to-r from-[#f8efdf]/90 to-[#f8efdf]/50 px-3 py-2">
-              <p className="text-[17px] leading-snug">What began as an apple-growing venture with his beloved wife became one of Arizona's most recognized cider destinations.</p>
-              <p className="mt-4 text-[17px] leading-snug">The business gained national attention and was featured by major television networks.</p>
+            <div className="mt-8 inline-block bg-gradient-to-r from-[#f8efdf]/90 to-[#f8efdf]/50 px-3 py-2 md:mt-[55px]">
+              <p className="text-[16px] leading-snug md:text-[17px]">What began as an apple-growing venture with his beloved wife became one of Arizona's most recognized cider destinations.</p>
+              <p className="mt-4 text-[16px] leading-snug md:text-[17px]">The business gained national attention and was featured by major television networks.</p>
             </div>
           </div>
           <div className="absolute bottom-0 left-0 right-0 z-10 grid grid-cols-2 border-t border-[#d2bd9c] bg-[#f8efdf]/90 text-center text-[11px] font-bold uppercase text-[#3a2a1f] shadow-sm sm:grid-cols-4 xl:text-[13px]">
@@ -467,21 +468,22 @@ export function AboutPage() {
           </div>
         </article>
 
-        <article className={`col-span-1 overflow-hidden border-b ${border} ${paper} md:col-span-6`}>
+        <article className={`relative overflow-hidden border-b ${border} ${paper}`}>
           <div className="px-5 py-6 md:px-7 xl:px-12 xl:py-9">
             <SectionTitle number="7">Family, Faith & Loss</SectionTitle>
           </div>
           <img
-            className="block w-full border-t border-[#d4bd95] object-cover"
+            className="block w-full border-t border-[#d4bd95] object-contain"
             src="images/For Section 7 (updated photo).png"
             alt="Family, marriage, children, grandchildren, faith journey, and losing his wife"
           />
 
           <blockquote className="hidden absolute bottom-10 left-[47%] z-10 w-[260px] border border-[#d2bd9c] bg-[#f8efdf]/90 p-4 text-center text-[18px] italic leading-snug text-[#16304a] shadow-lg">
-            <span className="absolute left-5 top-[-18px] text-[58px] leading-none text-[#a37b32]">“</span>
+            <span className="absolute left-5 top-[-18px] text-[58px] leading-none text-[#a37b32]">&ldquo;</span>
             Faith has carried me through both life's greatest blessings and its deepest sorrows.
           </blockquote>
         </article>
+        </div>
 
         <article
           className={`col-span-1 min-h-[260px] cursor-pointer border-b ${border} ${paper} px-5 py-6 md:col-span-12 md:px-7 xl:px-12 xl:py-9`}
@@ -511,7 +513,7 @@ export function AboutPage() {
 
       <section className="mx-auto grid max-w-[1440px] grid-cols-1 text-left text-[#f8e7c5] md:grid-cols-[minmax(0,1fr)_430px]">
         <article
-          className="min-h-[340px] bg-cover bg-center px-7 py-10 md:px-12 lg:px-16 xl:px-20 xl:py-14"
+          className="min-h-[340px] bg-cover bg-center px-5 py-10 sm:px-7 md:px-12 lg:px-16 xl:px-20 xl:py-14"
           style={{
             backgroundImage:
               'linear-gradient(90deg, rgba(18,12,9,.86), rgba(18,12,9,.58) 52%, rgba(18,12,9,.16)), url("images/Section 9.png")',
@@ -528,17 +530,17 @@ export function AboutPage() {
           <p className="mt-5 max-w-[520px] text-[17px] leading-snug text-[#fff2d8]">
             At 95 years old, Ronald Stout remains committed to sharing stories of faith, perseverance, and purpose. His mission continues through every book he writes and every life he touches.
           </p>
-          <blockquote className="relative mt-7 max-w-[600px] pl-10 text-[23px] italic leading-tight text-[#fff3d9]">
+          <blockquote className="relative mt-7 max-w-[600px] pl-8 text-[19px] italic leading-tight text-[#fff3d9] sm:pl-10 md:text-[23px]">
             <span className="absolute left-0 top-[-8px] text-[60px] not-italic leading-none text-[#d2a23a]">&ldquo;</span>
             I am the Way, the Truth, and the Life. No man comes to the Father, but by Me.
             <span className="ml-1 not-italic">&rdquo;</span>
             <cite className="mt-3 block text-[17px] not-italic text-[#fff2d8]">John 14:6</cite>
           </blockquote>
           <blockquote className="hidden">
-            <span className="absolute left-0 top-[-8px] text-[60px] not-italic leading-none text-[#d2a23a]">“</span>
+            <span className="absolute left-0 top-[-8px] text-[60px] not-italic leading-none text-[#d2a23a]">&ldquo;</span>
           </blockquote>
         </article>
-        <aside className="border-l border-[#c6aa7a]/50 bg-[#53140f] px-7 py-10 text-[#fff1d7] md:px-10 xl:px-12 xl:py-14">
+        <aside className="border-t border-[#c6aa7a]/50 bg-[#53140f] px-5 py-10 text-[#fff1d7] sm:px-7 md:border-l md:border-t-0 md:px-10 xl:px-12 xl:py-14">
           <h3 className="mb-4 text-[25px] font-bold text-[#fff3d9]">Let's Stay Connected</h3>
           <p className="mb-4 text-[17px] leading-snug">Whether you're a reader, fellow believer, or interested in having me speak at your event, please reach out.</p>
           <a className="mb-4 inline-block bg-[#b17a22] px-6 py-3 text-[13px] font-bold uppercase text-[#fff2d2]" href="#/contact">Contact Ronny</a>
