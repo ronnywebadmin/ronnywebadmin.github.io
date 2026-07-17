@@ -95,14 +95,9 @@ function PublicistCard({ currentVerse }) {
 
       <blockquote className="mx-auto mt-10 max-w-[270px] border-t border-[#cbb28e] pt-7 text-center text-[16px] italic leading-relaxed text-[#6b4a32]">
         <span className="mb-2 block text-[42px] leading-none text-[#c6ad86]" aria-hidden="true">&ldquo;</span>
-        Commit to the LORD whatever you do, and your plans will succeed.
-        <span className="mt-2 block text-[15px] not-italic">&mdash; Proverbs 16:3 NIV</span>
+        {verse[1]}
+        <span className="mt-2 block text-[15px] not-italic">&mdash; {verse[0]}</span>
       </blockquote>
-      <div className="sr-only">
-        <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-[#7b2a1a]">Selected Scripture</p>
-        <p className="mt-2 font-bold text-[#4b120f]">{verse[0]}</p>
-        <p className="mt-2 text-[16px] italic leading-relaxed text-[#24130d]">{verse[1]}</p>
-      </div>
     </aside>
   );
 }
