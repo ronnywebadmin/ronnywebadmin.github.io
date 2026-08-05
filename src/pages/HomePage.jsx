@@ -131,7 +131,10 @@ export function HomePage() {
                   The composer gives his permission for SOLOISTS to use the pronouns "I, me, my, mine" etc., and for GROUPS to use "we, our, ours, and us" substitutions in the lyrics.
                 </p>
                 <p className="mt-4 text-[16px] leading-snug md:text-[17px]">
-                  This song has the Gospel of Jesus Christ embedded within the lyrics. Various other Scriptures are reflected such as the Psalms 6:1 and 13:6, John 3:3 and others. There is an interesting background story concerning this song's composition, provided upon request. Copyright applied for.
+                  This song has the Gospel of Jesus Christ embedded within the lyrics. Various other Scriptures are reflected such as the Psalms 6:1 and 13:6, John 3:3 and others. There is an interesting background story concerning this song's composition. Copyright applied for.
+                </p>
+                <p className="mt-4 text-[16px] leading-snug md:text-[17px]">
+                  Read the stories behind both songs on the Media & Assets page, then open the lyrics or download them as a PDF.
                 </p>
               </aside>
             </div>
