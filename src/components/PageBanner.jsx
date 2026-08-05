@@ -9,7 +9,7 @@ const bannerContent = {
   },
   media: {
     title: 'MEDIA & ASSETS',
-    text: "Lyrics and media resources from Ronny's original songs.",
+    text: "The stories behind Ronny's original songs, with lyrics to read or download.",
   },
   about: {
     title: 'ABOUT RONNY',
