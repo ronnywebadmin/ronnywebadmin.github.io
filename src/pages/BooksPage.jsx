@@ -14,6 +14,82 @@ function SectionRule({ children }) {
   );
 }
 
+function ThoughtsAboutBooks() {
+  return (
+    <section className="mx-auto mb-8 max-w-[1180px] border border-[#b99a73] bg-[#fffaf0]/65 px-5 py-6 shadow-[0_5px_16px_rgba(69,41,22,.06)] sm:px-7 md:px-9 md:py-7">
+      <h2 className="text-center text-[25px] font-bold leading-tight text-[#24130d] md:text-[29px]">
+        Thoughts About Ronny&apos;s Books
+      </h2>
+      <div className="mt-5 space-y-3 text-[15px] leading-[1.48] text-[#2c1912] md:text-[16px] xl:columns-2 xl:gap-10 [&>p]:break-inside-avoid">
+        <p>
+          After publishing <em>Fireflies</em> and <em>Top Ten</em>, Ronny settled down to explore what genre or genres he wanted to write. He had always been partial to athletics, with football being his number-one love. Perhaps, he thought, football could be his genre.
+        </p>
+        <p>
+          Ronny had a short but successful high school football career that lasted only one year. His senior year at Eagle Rock was marred by three injuries, and he only played a few downs that entire season. Before he healed, the season was over.
+        </p>
+        <p>
+          He looked forward to playing Division 3 football at Occidental College. He knew instinctively that he did not have the physical talent to play Division 1 football. In 1948, football started at Oxy two weeks before school began. Ronny showed up and became part of the squad. He went out for running back and was placed on the second team behind a 24-year-old veteran of the U.S. Marines returning from World War II. Ronny was only 17 years old.
+        </p>
+        <p>
+          However, during the “wind sprints,” Ronny discovered that he was faster than Doug. Since speed is a prime quality in football, he knew he would play.
+        </p>
+        <p>
+          The workouts were grueling but contained a degree of excitement. September matured and school started. During the very first week, the Dean called Ronny in to speak with him.
+        </p>
+        <p>“What are you doing playing football?” the Dean asked.</p>
+        <p>“I don’t know what you mean,” Ronny answered.</p>
+        <p>
+          The Dean continued, “You can’t play football and be a pre-medical student. You have important labs four afternoons a week, which totally conflict with football practice.”
+        </p>
+        <p>
+          Ronny was confronted with a huge decision. He withdrew to think the whole situation over and ultimately decided that he needed to quit football. All his life, he had looked forward to playing college football, but now he had to give it up. Deep anger built in his chest, but he felt he had to make his first “adult decision.”
+        </p>
+        <p>Ronny quit football.</p>
+        <p>
+          Resentment ran deep. Frankly, Ronny never got over it; it lasted his whole life. To release some of that resentment at the time, he went out for boxing, which had no “team workout time.” He could condition on his own and participate in scheduled fights they called “sparring rounds.” Ronny slammed the bags relentlessly and pounded a few opponents. He made the collegiate Golden Gloves Finals two years in a row but unfortunately lost on points both times.
+        </p>
+        <p>
+          Ronny thought he could write about boxing, but while he was turning that idea over in his mind, Sylvester Stallone came out with his <em>Rocky</em> series. Ronny would just be a tag-along. No thanks.
+        </p>
+        <p>
+          Then Ronny realized he had a granddaughter who was an integral part of two Willcox High School championship teams, and she did not even attend the school; she was being homeschooled. But the team members remembered her from grammar school and sent someone to recruit her to play with them, which she could legally do.
+        </p>
+        <p>
+          First, Esther became an important starter on the Willcox basketball team, which went all the way to the Arizona State Championship game in Phoenix at the professional arena. At an early stage of the game, with the score 7–9, Esther brought the ball across the center line by only six or seven feet and set up for a long three-pointer. Everyone in the stadium, including her own teammates, thought, <em>Oh, no, too far!</em> But the shot arced true and hit “swish, nothing but net!” Willcox 10 – Opponent 9. That long shot made the evening news in Phoenix.
+        </p>
+        <p>
+          In the spring, Esther was recruited to play softball. She played a variety of positions but finally ended up in center field because of her speed and catching ability. At the plate, however, she was awesome. She made her mark and was invited by the League to play in the All-Star game representing the South.
+        </p>
+        <p>
+          Esther started her little sister, Amber, in pitching while Amber was still a pre-teen. By the time Amber reached high school, she had become one of the team’s most valuable players. In her senior year, she was chosen as one of the four best pitchers in the state to pitch in the North-South All-Star game. She also received other honors.
+        </p>
+        <p>
+          Ronny and his wife followed the teams. They attended all the home games and most of the away games. They became involved, knew the players and their families, and followed the teams closely.
+        </p>
+        <p>
+          More importantly, Esther would travel with Ronny on weekends to sell their pies at various distant locations. Of course, they talked about softball, but they also talked about problems different players were grappling with. That was when Ronny realized there was a genre no one was using: <strong>women and girls in sports.</strong>
+        </p>
+        <p>Ronny began to focus on different sports and the problems troubling the players.</p>
+        <p>
+          Really good athletes are usually close to top-level people. Most are intelligent, resourceful, and fiercely competitive, but each has their own set of peccadilloes. The most prevalent ones are arrogance, conceit—usually masked as overconfidence—and complacency. Ronny tries to bring these undesirable traits into every story to expose the negativity resulting from them.
+        </p>
+        <p>
+          He also introduces the problems of the period, such as males trying to compete as women, antisemitism, racism, laziness, plus the usual lying, cheating, drugs, drinking, sexual orientation, and false gods.
+        </p>
+        <p>
+          One of the problems Ronny has had with so-called “promoters” is that they try to promote his books without ever having read them. Each of his books can be read in a couple of hours. Speakers study and take notes, singers practice, and book reviewers <strong>should do their preparatory work too.</strong>
+        </p>
+        <p>
+          Ronny also tries to embed examples in his stories, with a person of authority—such as a coach, teacher, principal, or another leader—sharing <strong>the two great evils of success</strong> with the readers. The odds are that the actual readers will be successful people, so they need to know about and be on guard for these two great evils that tend to afflict the successful. If either of them ever gets a foothold in a person&apos;s life, they can destroy that person.
+        </p>
+        <p>
+          Ronny also tries to embed the <strong>Christian gospel</strong> in each story, not philosophically, but by example. Often, he has someone, usually the special girl in the book, lead another person to Christ.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function BookButton({ href, children }) {
   if (!href) {
     return (
@@ -133,6 +209,8 @@ export function BooksPage() {
           backgroundPosition: 'center top',
         }}
       >
+        <ThoughtsAboutBooks />
+
         <SectionRule>Books</SectionRule>
         <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
           {books.map((book) => (
