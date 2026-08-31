@@ -1,10 +1,5 @@
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { books, comingBooks, otherBooks, sportsBooks } from '../data/books';
-
-const comingDetails = {
-  Splash: 'A story of courage, friendship, and finding your way in the deep end.',
-  Penelope: 'A journey of faith, identity, and discovering your true purpose.',
-  "Stout's Cider Mill": "The Life and Times of Stout's Cider Mill of Macks Creek.",
-};
 
 function SectionRule({ children }) {
   return (
@@ -14,13 +9,99 @@ function SectionRule({ children }) {
   );
 }
 
-function ThoughtsAboutBooks() {
+function getBookPreview(description) {
+  const sentences = description.match(/[^.!?]+(?:[.!?]+[”"']?|$)/g)?.map((sentence) => sentence.trim()).filter(Boolean) || [description];
+  const primarySentences = [sentences[0]];
+  let primaryLength = sentences[0]?.length || 0;
+  let nextSentenceIndex = 1;
+
+  while (nextSentenceIndex < sentences.length - 1 && primaryLength < 70) {
+    const nextSentence = sentences[nextSentenceIndex];
+
+    if (primaryLength >= 50 && nextSentence.length > 105) break;
+
+    primarySentences.push(nextSentence);
+    primaryLength += nextSentence.length + 1;
+    nextSentenceIndex += 1;
+  }
+
+  return {
+    primaryText: primarySentences.join(' '),
+    trailingSentence: sentences[nextSentenceIndex] || '',
+  };
+}
+
+function BookPreview({ description }) {
+  const { primaryText, trailingSentence } = getBookPreview(description);
+  const fadingWords = trailingSentence.split(/\s+/).filter(Boolean).slice(0, 18);
+
   return (
-    <section className="mx-auto mb-8 max-w-[1180px] border border-[#b99a73] bg-[#fffaf0]/65 px-5 py-6 shadow-[0_5px_16px_rgba(69,41,22,.06)] sm:px-7 md:px-9 md:py-7">
+    <div className="mt-3 h-[132px] overflow-hidden text-[15px] leading-snug text-[#24130d] md:text-[16px] md:leading-relaxed">
+      <p
+        style={{
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
+          WebkitLineClamp: 3,
+          overflow: 'hidden',
+        }}
+      >
+        {primaryText}
+      </p>
+      {fadingWords.length > 0 && (
+        <p
+          className="mt-1.5"
+          style={{
+            display: '-webkit-box',
+            WebkitBoxOrient: 'vertical',
+            WebkitLineClamp: 2,
+            overflow: 'hidden',
+          }}
+        >
+          {fadingWords.map((word, index) => {
+            const fadeProgress = fadingWords.length === 1 ? 1 : index / (fadingWords.length - 1);
+            const opacity = 0.7 - (fadeProgress * 0.6);
+
+            return (
+              <span key={`${word}-${index}`} style={{ opacity }}>
+                {word}{index < fadingWords.length - 1 ? ' ' : ''}
+              </span>
+            );
+          })}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function ThoughtsAboutBooks() {
+  const [expanded, setExpanded] = useState(false);
+  const sectionRef = useRef(null);
+
+  const toggleExpanded = () => {
+    if (!expanded) {
+      setExpanded(true);
+      return;
+    }
+
+    setExpanded(false);
+    window.requestAnimationFrame(() => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      sectionRef.current?.scrollIntoView({
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        block: 'start',
+      });
+    });
+  };
+
+  return (
+    <section ref={sectionRef} className="mx-auto mb-8 max-w-[1180px] scroll-mt-6 border border-[#b99a73] bg-[#fffaf0]/65 px-5 py-6 shadow-[0_5px_16px_rgba(69,41,22,.06)] sm:px-7 md:px-9 md:py-7">
       <h2 className="text-center text-[25px] font-bold leading-tight text-[#24130d] md:text-[29px]">
         Thoughts About Ronny&apos;s Books
       </h2>
-      <div className="mt-5 space-y-3 text-[15px] leading-[1.48] text-[#2c1912] md:text-[16px] xl:columns-2 xl:gap-10 [&>p]:break-inside-avoid">
+      <div
+        id="thoughts-about-books-content"
+        className={`mt-5 space-y-3 text-[15px] leading-[1.48] text-[#2c1912] md:text-[16px] xl:columns-2 xl:gap-10 [&>p]:break-inside-avoid ${expanded ? '' : '[&>p:nth-child(n+4)]:hidden'}`}
+      >
         <p>
           After publishing <em>Fireflies</em> and <em>Top Ten</em>, Ronny settled down to explore what genre or genres he wanted to write. He had always been partial to athletics, with football being his number-one love. Perhaps, he thought, football could be his genre.
         </p>
@@ -86,6 +167,17 @@ function ThoughtsAboutBooks() {
           Ronny also tries to embed the <strong>Christian gospel</strong> in each story, not philosophically, but by example. Often, he has someone, usually the special girl in the book, lead another person to Christ.
         </p>
       </div>
+      <div className="mt-6 flex justify-center">
+        <button
+          className="inline-flex min-w-[180px] items-center justify-center border border-[#7b5638] bg-[#4a2110] px-5 py-2.5 text-[14px] font-semibold uppercase tracking-[0.06em] text-[#f6dfbd] shadow-[2px_2px_0_rgba(255,255,255,.65)] transition hover:bg-[#603019] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7b5638]"
+          type="button"
+          aria-controls="thoughts-about-books-content"
+          aria-expanded={expanded}
+          onClick={toggleExpanded}
+        >
+          {expanded ? 'Show Less' : 'Continue Reading'}
+        </button>
+      </div>
     </section>
   );
 }
@@ -93,7 +185,7 @@ function ThoughtsAboutBooks() {
 function BookButton({ href, children }) {
   if (!href) {
     return (
-      <span className="mt-auto inline-flex min-w-[104px] items-center justify-center bg-[#4a2110] px-4 py-2 text-center text-[13px] font-semibold text-[#f6dfbd] shadow-[2px_2px_0_rgba(255,255,255,.65)] md:min-w-[112px]">
+      <span className="inline-flex min-w-[104px] items-center justify-center bg-[#4a2110] px-4 py-2 text-center text-[13px] font-semibold text-[#f6dfbd] shadow-[2px_2px_0_rgba(255,255,255,.65)] md:min-w-[112px]">
         {children}
       </span>
     );
@@ -101,7 +193,7 @@ function BookButton({ href, children }) {
 
   return (
     <a
-      className="mt-auto inline-flex min-w-[104px] items-center justify-center bg-[#4a2110] px-4 py-2 text-center text-[13px] font-semibold text-[#f6dfbd] no-underline shadow-[2px_2px_0_rgba(255,255,255,.65)] md:min-w-[112px]"
+      className="inline-flex min-w-[104px] items-center justify-center bg-[#4a2110] px-4 py-2 text-center text-[13px] font-semibold text-[#f6dfbd] no-underline shadow-[2px_2px_0_rgba(255,255,255,.65)] transition hover:bg-[#603019] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7b5638] md:min-w-[112px]"
       href={href}
       target="_blank"
       rel="noopener noreferrer"
@@ -111,7 +203,105 @@ function BookButton({ href, children }) {
   );
 }
 
-function MockBookCard({ book, coming = false }) {
+function BookDetailsModal({ book, onClose }) {
+  const closeButtonRef = useRef(null);
+  const dialogRef = useRef(null);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+
+      const focusableElements = dialogRef.current?.querySelectorAll('a[href], button:not([disabled])');
+      if (!focusableElements?.length) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#1d100b]/80 px-4 py-6 backdrop-blur-[2px] sm:px-6"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <section
+        ref={dialogRef}
+        className="relative my-auto w-full max-w-[780px] border border-[#c49a61] bg-[#f8ecd9] p-5 text-[#24130d] shadow-[0_24px_70px_rgba(0,0,0,.55)] sm:p-7 md:p-9"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="book-details-title"
+      >
+        <button
+          ref={closeButtonRef}
+          className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center border border-[#7b5638] bg-[#4a2110] text-[27px] leading-none text-[#f6dfbd] transition hover:bg-[#603019] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7b5638]"
+          type="button"
+          aria-label={`Close ${book.title} details`}
+          onClick={onClose}
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+
+        <div className="grid gap-6 pr-8 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-8 sm:pr-0">
+          <img
+            className="mx-auto h-[230px] w-[150px] border border-[#b99769] object-cover shadow-[0_7px_16px_rgba(45,26,18,.35)] sm:mx-0 sm:h-[250px] sm:w-[160px]"
+            src={book.img}
+            alt={book.alt}
+          />
+          <div className="flex min-w-0 flex-col items-start sm:pt-3">
+            <h2 id="book-details-title" className="pr-4 text-[27px] font-bold uppercase leading-tight text-[#24130d] md:text-[32px]">
+              {book.title}
+            </h2>
+            {book.coming && (
+              <p className="mt-2 text-[14px] font-bold uppercase tracking-[0.1em] text-[#6b2c18]">Coming Soon</p>
+            )}
+            <p className="mt-5 text-[16px] leading-relaxed text-[#2c1912] md:text-[17px]">
+              {book.description}
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              {book.url ? (
+                <BookButton href={book.url}>View on Amazon</BookButton>
+              ) : (
+                <span className="inline-flex items-center border border-[#8b6a3d] px-4 py-2 text-[12px] font-bold uppercase tracking-[0.08em] text-[#6a2418]">
+                  Coming Soon
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function MockBookCard({ book, coming = false, onReadMore }) {
+  const description = book.text;
+
   return (
     <article className="grid min-h-[260px] grid-cols-[96px_minmax(0,1fr)] gap-4 border border-[#8f765f] bg-[#f5e8d5]/82 p-4 text-left shadow-sm sm:min-h-[300px] sm:grid-cols-[120px_minmax(0,1fr)] sm:gap-5 sm:p-5">
       <img
@@ -126,10 +316,19 @@ function MockBookCard({ book, coming = false }) {
         {coming && (
           <p className="mt-1 text-[14px] font-bold uppercase tracking-[0.08em] text-[#4b2115]">Coming Soon</p>
         )}
-        <p className="mt-3 text-[15px] leading-snug text-[#24130d] md:text-[16px] md:leading-relaxed">
-          {coming ? comingDetails[book.title] : book.text}
-        </p>
-        <BookButton href={coming ? null : book.url}>{coming ? 'Learn More' : 'View on Amazon'}</BookButton>
+        <BookPreview description={description} />
+        <div className="mt-auto flex flex-wrap gap-2 pt-5">
+          <button
+            className="inline-flex min-w-[104px] items-center justify-center border border-[#6f4b31] bg-[#f8ecd9] px-4 py-2 text-center text-[13px] font-semibold text-[#4a2110] shadow-[2px_2px_0_rgba(74,33,16,.16)] transition hover:bg-[#ead8bd] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7b5638] md:min-w-[112px]"
+            type="button"
+            aria-label={`Read more about ${book.title}`}
+            aria-haspopup="dialog"
+            onClick={(event) => onReadMore({ ...book, coming, description }, event)}
+          >
+            Read More
+          </button>
+          {!coming && <BookButton href={book.url}>View on Amazon</BookButton>}
+        </div>
       </div>
     </article>
   );
@@ -196,7 +395,19 @@ function OrderCopiesPanel() {
 }
 
 export function BooksPage() {
+  const [activeBook, setActiveBook] = useState(null);
+  const lastTriggerRef = useRef(null);
   const secondSectionBooks = [...sportsBooks, ...otherBooks];
+
+  const openBookDetails = (book, event) => {
+    lastTriggerRef.current = event.currentTarget;
+    setActiveBook(book);
+  };
+
+  const closeBookDetails = useCallback(() => {
+    setActiveBook(null);
+    window.requestAnimationFrame(() => lastTriggerRef.current?.focus());
+  }, []);
 
   return (
     <main className="bg-[#eadfcb] text-[#2c1912]">
@@ -214,25 +425,26 @@ export function BooksPage() {
         <SectionRule>Books</SectionRule>
         <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
           {books.map((book) => (
-            <MockBookCard key={book.title} book={book} />
+            <MockBookCard key={book.title} book={book} onReadMore={openBookDetails} />
           ))}
         </div>
 
         <SectionRule>Young Christian Women in Sports (2 Book Series)</SectionRule>
         <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
           {secondSectionBooks.map((book) => (
-            <MockBookCard key={book.title} book={book} />
+            <MockBookCard key={book.title} book={book} onReadMore={openBookDetails} />
           ))}
         </div>
 
-        <div className="mx-auto mt-4 grid max-w-[1140px] gap-4 lg:grid-cols-3">
+        <div className="mx-auto mt-4 grid max-w-[1360px] gap-4 lg:grid-cols-2 xl:grid-cols-4">
           {comingBooks.map((book) => (
-            <MockBookCard key={book.title} book={book} coming />
+            <MockBookCard key={book.title} book={book} coming onReadMore={openBookDetails} />
           ))}
         </div>
 
         <OrderCopiesPanel />
       </div>
+      {activeBook && <BookDetailsModal book={activeBook} onClose={closeBookDetails} />}
     </main>
   );
 }

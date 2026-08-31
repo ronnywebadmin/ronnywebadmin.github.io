@@ -147,10 +147,10 @@ function BookStrip({ title, books }) {
       <h3 className="absolute left-1/2 top-[-10px] -translate-x-1/2 bg-[#f4ecde] px-4 text-[13px] font-bold uppercase tracking-[0.08em] text-[#6d5a37]">
         {title}
       </h3>
-      <div className={`grid gap-3 ${books.length > 3 ? 'grid-cols-2 sm:grid-cols-4 md:grid-cols-8' : 'grid-cols-2 sm:grid-cols-3'}`}>
-        {books.map(([src, caption]) => (
-          <figure key={caption} className="min-w-0 text-center">
-            <img className="h-[130px] w-full border border-[#c9b38c] object-cover shadow-md md:h-[118px]" src={src} alt={`${caption} book cover`} />
+      <div className={`grid gap-3 ${books.length > 4 ? 'grid-cols-2 sm:grid-cols-4 md:grid-cols-6' : books.length === 4 ? 'grid-cols-2 sm:grid-cols-4 md:grid-cols-2' : 'grid-cols-2 sm:grid-cols-3'}`}>
+        {books.map(([src, caption], index) => (
+          <figure key={caption} className={`min-w-0 text-center ${books.length > 4 && index === books.length - 2 ? 'md:col-start-3' : ''}`}>
+            <img className="mx-auto h-[130px] w-auto max-w-full border border-[#c9b38c] bg-[#e8ddca] object-contain p-1 shadow-md md:h-[118px]" src={src} alt={`${caption} book cover`} />
             <figcaption className="mt-2 min-h-8 text-[13px] leading-tight text-[#2d1a12]">{caption}</figcaption>
           </figure>
         ))}
@@ -504,7 +504,7 @@ export function AboutPage() {
             <SectionTitle number="8">Author & Storyteller</SectionTitle>
             <p className="max-w-[560px] text-[15px] leading-snug">Today, Ronny continues writing and publishing Christian books designed to inspire, educate, and encourage readers of all ages.</p>
           </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_300px] md:gap-5 xl:grid-cols-[minmax(0,1fr)_330px] xl:gap-6">
+          <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[minmax(0,1fr)_300px] md:gap-5 xl:grid-cols-[minmax(0,1fr)_330px] xl:gap-6">
             <BookStrip title="Current Titles" books={authorCurrent} />
             <BookStrip title="Coming Soon" books={authorComing} />
           </div>
