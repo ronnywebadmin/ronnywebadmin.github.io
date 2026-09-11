@@ -448,8 +448,8 @@ export function AboutPage() {
           />
           <div className="relative z-10 max-w-[460px] px-5 py-6 md:px-7 xl:px-12 xl:py-9">
             <SectionTitle number="6">The Story of Stout's Cider Mill</SectionTitle>
-            <div className="mt-8 inline-block bg-gradient-to-r from-[#f8efdf]/90 to-[#f8efdf]/50 px-3 py-2 md:mt-[55px]">
-              <p className="text-[16px] leading-snug md:text-[17px]">What began as an apple-growing venture with his beloved wife became one of Arizona's most recognized cider destinations.</p>
+            <div className="mt-24 inline-block bg-gradient-to-r from-[#f8efdf]/90 to-[#f8efdf]/50 px-3 py-2 md:mt-[130px]">
+              <p className="text-[16px] leading-snug md:text-[17px]">What began as an apple-growing venture with his beloved wife, their business became one of Arizona's most recognized apple pie and cider destinations.</p>
               <p className="mt-4 text-[16px] leading-snug md:text-[17px]">The business gained national attention and was featured by major television networks.</p>
             </div>
           </div>

@@ -133,7 +133,7 @@ const songs = [
     image: 'images/etternity.png',
     imageAlt: 'For All Eternity song artwork with a guitar at sunset',
     year: '2025',
-    deck: 'A fall, two nights alone, and a prayer that became a song of worship.',
+    deck: 'A fall, three nights alone on the floor, and a prayer that became a song of worship.',
     story: [
       'The story of this song started on a Sunday afternoon, on the floor of my office at the ranch in Willcox, Arizona. I had come home from church and lunch afterward and was changing clothes. I should preface that, due to a stroke I suffered in 2018, I seem to have lost my sense of balance. It has subjected me to frequent falls, including several major ones.',
       'One peculiar feature of these falls is that they seem to occur whenever I try to do anything with my hands and arms above my head. Another is that the fall usually seems to be backward. There have been a couple of forward falls and at least one straight down, but most have been backward. To prevent the worst effects, I adopted the practice of backing up to my bed when working above my head. A couple of times I did fall backward, but landed on the bed, reinforcing the wisdom of that practice.',

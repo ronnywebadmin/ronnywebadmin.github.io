@@ -23,7 +23,7 @@ export const sportsBooks = [
 
 export const otherBooks = [
   { title: 'Top Ten Crucial Mistakes', img: 'images/topten.jpg', alt: 'Top Ten', text: 'Practical wisdom for young pastors navigating ministry. The author delivers a progressive and comprehensive list of pastoral mistakes he has observed over a lifetime. Ron’s editor comments, “The book is also to the church as the body of Christ. Use Top Ten as a classroom text, study guide, or handy reference, or read it just for enjoyment.”', url: amazon.topten },
-  { title: 'Fireflies', img: 'images/fireflies.jpg', alt: 'Fireflies', text: 'This very popular second printing of our book is not about flying insects, but is a Christian devotional filled with powerful life lessons. As a man’s spirituality is one of the most personal and private aspects of his life, the author has courageously chosen to share some of his special experiences with you.', url: amazon.fireflies },
+  { title: 'Fireflies', img: 'images/fireflies.jpg', alt: 'Fireflies', text: 'This book is not about flying insects, but is a Christian devotional filled with powerful life lessons. As a man’s spirituality is one of the most personal and private aspects of his life, the author has courageously chosen to share some of his special experiences with you in this popular book, now in its second printing.', url: amazon.fireflies },
 ];
 
 export const comingBooks = [
