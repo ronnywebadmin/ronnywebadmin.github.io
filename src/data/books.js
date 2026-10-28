@@ -1,4 +1,5 @@
 export const amazon = {
+  penelope: 'https://www.amazon.com/Penelope-Me-Ronald-Lex-Stout/dp/B0HMZ2M7LN',
   sprint: 'https://www.amazon.com/Sprint-Young-Christian-Sports-Hobbies/dp/B0D77MVFFJ/ref=sr_1_13?dib=eyJ2IjoiMSJ9.IIvpNMIyETYnHSrzdxEXV_O3QnJ51suPzF44XSPalW2YCeRE-TrQeSWO8NwOWJ_fshALfa0Lc9qgekt2RIkT7asR-IhpV5SLqf6kfxEs6s3WIqKXcrSa2uxmkQ8PjY3WovQBGKlSoSXLgRxhe4jgNoG9AkJjzTNrSSFjSgWOmAxwPXemy0Bh3h23XdZoiZTY.54tHZ1eFrmPs1_ejbP57i6ClzToHnp0dxohROnVrksU&dib_tag=se&qid=1772540011&refinements=p_27%3ARon+Stout&s=books&sr=1-13&text=Ron+Stout',
   ringer: 'https://www.amazon.com/Ringer-Ron-Stout/dp/B0C5P7DW5F/ref=sr_1_8?dib=eyJ2IjoiMSJ9.IIvpNMIyETYnHSrzdxEXV_O3QnJ51suPzF44XSPalW2YCeRE-TrQeSWO8NwOWJ_fshALfa0Lc9qgekt2RIkT7asR-IhpV5SLqf6kfxEs6s3WIqKXcrSa2uxmkQ8PjY3WovQBGKlSoSXLgRxhe4jgNoG9AkJjzTNrSSFjSgWOmAxwPXemy0Bh3h23XdZoiZTY.54tHZ1eFrmPs1_ejbP57i6ClzToHnp0dxohROnVrksU&dib_tag=se&qid=1772540011&refinements=p_27%3ARon+Stout&s=books&sr=1-8&text=Ron+Stout',
   westward: 'https://www.amazon.com/Westward-Ho-Ron-Stout/dp/B0B5MRY9WJ/ref=sr_1_9?dib=eyJ2IjoiMSJ9.IIvpNMIyETYnHSrzdxEXV_O3QnJ51suPzF44XSPalW2YCeRE-TrQeSWO8NwOWJ_fshALfa0Lc9qgekt2RIkT7asR-IhpV5SLqf6kfxEs6s3WIqKXcrSa2uxmkQ8PjY3WovQBGKlSoSXLgRxhe4jgNoG9AkJjzTNrSSFjSgWOmAxwPXemy0Bh3h23XdZoiZTY.54tHZ1eFrmPs1_ejbP57i6ClzToHnp0dxohROnVrksU&dib_tag=se&qid=1772540011&refinements=p_27%3ARon+Stout&s=books&sr=1-9&text=Ron+Stout',
@@ -22,18 +23,19 @@ export const sportsBooks = [
 ];
 
 export const otherBooks = [
+  { title: 'Penelope and Me', img: 'images/Penelope and Me Front Cover.png', alt: 'Penelope and Me', text: 'A journey of faith, identity, and discovering your true purpose. Penelope’s story began in Holland over 400 years ago. Significant information has been obtained to indicate, but not verify, her early life. Her pivotal experience in the New World and her recovery from virtually fatal injuries molded the character of this incredible ancestress into a stellar citizen of the New World. The similarities between Penelope and the author, her direct-line descendant, are remarkable.', url: amazon.penelope },
   { title: 'Top Ten Crucial Mistakes', img: 'images/topten.jpg', alt: 'Top Ten', text: 'Practical wisdom for young pastors navigating ministry. The author delivers a progressive and comprehensive list of pastoral mistakes he has observed over a lifetime. Ron’s editor comments, “The book is also to the church as the body of Christ. Use Top Ten as a classroom text, study guide, or handy reference, or read it just for enjoyment.”', url: amazon.topten },
   { title: 'Fireflies', img: 'images/fireflies.jpg', alt: 'Fireflies', text: 'This book is not about flying insects, but is a Christian devotional filled with powerful life lessons. As a man’s spirituality is one of the most personal and private aspects of his life, the author has courageously chosen to share some of his special experiences with you in this popular book, now in its second printing.', url: amazon.fireflies },
 ];
 
 export const comingBooks = [
   { title: 'Splash', img: 'images/splash.jpg', alt: 'Splash', text: 'A story of courage, friendship, and finding your way in the deep end. A non-fiction book about a world-class swimmer whom the author knew personally. He chronicles her long, tortuous path to success. One of her momentous world records can never and will never be broken.' },
-  { title: 'Penelope and Me', img: 'images/Penelope and Me Front Cover.png', alt: 'Penelope and Me', text: 'A journey of faith, identity, and discovering your true purpose. Penelope’s story began in Holland over 400 years ago. Significant information has been obtained to indicate, but not verify, her early life. Her pivotal experience in the New World and her recovery from virtually fatal injuries molded the character of this incredible ancestress into a stellar citizen of the New World. The similarities between Penelope and the author, her direct-line descendant, are remarkable.' },
   { title: 'Stout’s Cider Mill', img: 'images/cider.jpg', alt: 'Stout’s Cider Mill', text: 'After a career in the stock market, the author and his wife decided to move to a farm in Arizona. While they were acquiring it, apple growing exploded in Arizona with the introduction of the Granny Smith apple. The Stouts not only planted nearly 7,000 apple trees, but also encountered many unforeseen difficulties in establishing a recognizable retail location for their fruit.' },
   { title: 'SWISH!!', img: 'images/SWISH!! Cover Design.png', alt: 'SWISH!!', text: 'A women’s basketball book. The highly intelligent, extremely attractive, yet single coach of the San Fernando University women’s basketball team, Brandi Braden, makes two decisions: one very forward and innovative, and the other very ill-advised and dangerous. Her choices lead to a tumultuous season including injuries, inventions, adventures, arrests, disaster, and disappointments. However, her assistant coach, Emily Hanson, holds true and develops the silver lining for the school.' },
 ];
 
 export const authorCurrent = [
+  ['images/Penelope and Me Front Cover.png', 'Penelope and Me'],
   ['images/fireflies.jpg', 'Fireflies'],
   ['images/topten.jpg', 'Top Ten Mistakes'],
   ['images/sprint.jpg', 'Sprint'],
@@ -46,7 +48,6 @@ export const authorCurrent = [
 
 export const authorComing = [
   ['images/splash.jpg', 'Splash'],
-  ['images/Penelope and Me Front Cover.png', 'Penelope and Me'],
   ['images/cider.jpg', 'Stout’s Cider Mill'],
   ['images/SWISH!! Cover Design.png', 'SWISH!!'],
 ];
